@@ -46,7 +46,7 @@ public class InviaEmail {
             message.setRecipients(
                     Message.RecipientType.TO,
                     InternetAddress.parse("nicocostantino8@gmail.com, simonecimino20@gmail.com")
-            );
+            ); 
             message.setSubject("Testing Gmail TLS");
             message.setText("Dear Mail Crawler,"
                     + "\n\n Please do not spam my email!");
