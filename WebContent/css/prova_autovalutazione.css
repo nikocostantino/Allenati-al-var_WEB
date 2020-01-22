@@ -1,0 +1,66 @@
+body {
+	/*background-image:url(../img/background.jpg);*/
+	background-color: #1e1a55;
+  	font-family: "Poppins", sans-serif;
+}
+
+.jumbotron{
+	opacity: 0.9;
+}
+
+#cornice{
+	display:flex;
+}
+
+#timer{
+	font-size:42px;
+	height: 25%;
+	text-align : center;
+}
+	
+#colonnaSx{
+	flex:70%;
+	width:70%;
+}
+
+#colonnaDx{
+	flex:30%;
+	width:30%;
+}
+
+#rigaTimer{
+	height: 50%;
+	text-align:center;	
+}
+
+#rigaRisposte{
+	height: 50%;
+}
+
+#rigaVideo{
+	font-size: 42px;
+	font-weight: 900;
+}
+
+a{
+	margin-top: 5%;
+}
+
+#jumbo_top{
+		width: 100%;
+		height:1px;
+}
+
+#rispostaCorretta{
+	width: 90%;
+	height: 40%;
+	font-size:18px;
+	font-weight: 900;
+	}
+	
+#rispostaErrata{
+	width: 90%;
+	height: 40%;
+	font-size:18px;
+	font-weight: 900;
+}
