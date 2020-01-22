@@ -32,6 +32,10 @@ body {
 	
 }
 
+#buttonRecuperoPsw{
+	margin-top:2%;
+}
+
 #formatRegistrazione{
   	
   	padding: 5px 32px;
@@ -111,5 +115,5 @@ color: blue;
 
 .links a{
 margin-left: 10px;
-margin-top: -1%
+margin-top: -0.5%
 }

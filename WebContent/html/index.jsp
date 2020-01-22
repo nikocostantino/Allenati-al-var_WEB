@@ -36,6 +36,14 @@
 						  <strong>Registrazione avvenuta con successo!</strong>
 						</div>
 		      	</c:if>
+		      	
+		      	<c:if test="${recuperoPasswordEffettuato != null}">
+		      		<div class="alert alert-success alert-dismissible fade show" id="formatRegistrazione" role="alert">
+						  <strong>Recupero password effettuato.
+						  <br>
+						  Verifica se hai ricevuto un'email con la tua password.</strong>
+						</div>
+		      	</c:if>
 	      	
 	      		<input type="email" id="email" class="fadeIn second" name="email" placeholder="email" required/>
 	      		
@@ -52,7 +60,10 @@
 	
 	    	<div id="formFooter">
 				<div class="d-flex justify-content-center links">
-					Non hai un account?<a id="buttonRegistrati" class="btn btn-secondary" type="submit" href="gestorePagine?pagina=registrati">Registrati</a>
+					Non hai un account?<a id="buttonRegistrati" class="btn btn-secondary btn-sm" type="submit" href="gestorePagine?pagina=registrati">Registrati</a>
+				</div>
+				<div id="buttonRecuperoPsw" class="d-flex justify-content-center links">
+					Hai dimenticato la password?<a id="buttonRecuperaPassword" class="btn btn-secondary btn-sm" type="submit" href="gestorePagine?pagina=recuperoPassword">Recupera Password</a>
 				</div>
 			</div>
 	

@@ -39,7 +39,7 @@ public class DBManager {
 	}
 	
 	public Connection getConnection() throws SQLException {
-		Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Allenati_Al_Var", "postgres", "7Ronaldo");
+		Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Allenati_Al_Var", "postgres", "Simone_10");
 		return connection;
 	}
 	

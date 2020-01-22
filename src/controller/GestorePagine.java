@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.mail.MessagingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -54,6 +55,28 @@ public class GestorePagine extends HttpServlet {
 				RequestDispatcher rd = req.getRequestDispatcher(pagina+".jsp");
 				rd.forward(req, resp);
 			}
+			else if(pagina.equals("recupera"))
+			{
+				String email=req.getParameter("email");
+				if(DBManager.getInstance().esisteEmail(email))
+				{
+					
+					InviaEmail.getInstance().inviaMail();
+					
+					
+					req.getSession().setAttribute("recuperoPasswordEffettuato", "true");
+					RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
+					rd.forward(req,resp);
+					req.getSession().removeAttribute("recuperoPasswordEffettuato");
+				}
+				else
+				{
+					req.getSession().setAttribute("emailNonPresente", "true");
+					RequestDispatcher rd = req.getRequestDispatcher("recuperoPassword.jsp");
+					rd.forward(req,resp);
+					req.getSession().removeAttribute("emailNonPresente");
+				}
+			}
 			else
 			{
 				RequestDispatcher rd = req.getRequestDispatcher(pagina+".jsp");
@@ -63,6 +86,10 @@ public class GestorePagine extends HttpServlet {
 		
 		
 		
+	}
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doGet(req, resp);
 	}
 
 }
