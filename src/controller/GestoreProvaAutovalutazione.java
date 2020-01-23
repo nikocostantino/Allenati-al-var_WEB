@@ -69,6 +69,7 @@ public class GestoreProvaAutovalutazione extends HttpServlet {
 				if(risposteErrate>4)
 					esito.setRisultato(false);
 				
+				DBManager.getInstance().setVoto(10-risposteErrate,DBManager.getInstance().getUtenteCorrente().getEmail());
 				DBManager.getInstance().aggiungiAlloStorico(esito);
 				rd = req.getRequestDispatcher("esito.jsp");
 				req.getSession().setAttribute("esito", lista_video_con_risposta_utente);

@@ -24,6 +24,7 @@
       <li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Profilo<span class="caret"></span></a>
 				<div class="dropdown-menu">
+      				<a class="dropdown-item" href="gestorePagine?pagina=statistiche">Statistiche</a>
 					<a  class="dropdown-item" href="gestorePagine?pagina=preferiti">Preferiti</a>
 					<a  class="dropdown-item" href="gestorePagine?pagina=storico">Storico</a>		
 					<div class="dropdown-divider"></div>		
@@ -41,13 +42,10 @@
   				</li>
 	</c:if>
     
-    
-    
-    
-    
+  
     <li class="nav-item">
       <a class="nav-link" href="gestorePagine?pagina=info">Info</a>
-
+	</li>
     </ul>
     <form class="form-inline my-2 my-lg-0" method="GET" action="risultatoRicerca">
     <div class="alert my-2 my-sm-0" id="benvenuto">

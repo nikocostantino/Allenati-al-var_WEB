@@ -2,6 +2,9 @@ package controller;
 
 import javax.mail.*;
 import javax.mail.internet.*;
+
+import persistence.DBManager;
+
 import java.util.*;
 
 public class InviaEmail {
@@ -21,13 +24,13 @@ public class InviaEmail {
 	}
 	
 	
-	public void inviaMail() {
+	public void inviaMail(String destinatario) {
 
-        final String username = "nicoc840@gmail.com";
-        final String password = "7ronaldo";
+        final String username = "allenatialvar@libero.it";
+        final String password = "allenatialvarronaldo";
 
         Properties prop = new Properties();
-		prop.put("mail.smtp.host", "smtp.gmail.com");
+		prop.put("mail.smtp.host", "smtp.libero.it");
         prop.put("mail.smtp.port", "587");
         prop.put("mail.smtp.auth", "true");
         prop.put("mail.smtp.starttls.enable", "true"); //TLS
@@ -42,18 +45,20 @@ public class InviaEmail {
         try {
 
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("ncostantino2@gmail.com"));
+            message.setFrom(new InternetAddress("allenatialvar@libero.it"));
             message.setRecipients(
                     Message.RecipientType.TO,
-                    InternetAddress.parse("nicocostantino8@gmail.com, simonecimino20@gmail.com")
+                    InternetAddress.parse(destinatario)
             ); 
-            message.setSubject("Testing Gmail TLS");
-            message.setText("Dear Mail Crawler,"
-                    + "\n\n Please do not spam my email!");
+            message.setSubject("Recupero password Allenati al VAR");
+            message.setText("Gentile " + DBManager.getInstance().getNomeUtentePerEmail(destinatario) +
+                     "\n\n la sua password è: " + DBManager.getInstance().getPasswordUtentePerEmail(destinatario) +
+            "\n\n Cordiali saluti," +
+            "\n Il team di Allenati al VAR");
 
             Transport.send(message);
 
-            System.out.println("Done");
+          //  System.out.println("Done");
 
         } catch (MessagingException e) {
             e.printStackTrace();

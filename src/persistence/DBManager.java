@@ -39,7 +39,7 @@ public class DBManager {
 	}
 	
 	public Connection getConnection() throws SQLException {
-		Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/Allenati_Al_Var", "postgres", "Simone_10");
+		Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AllenatiALVAR_WEB", "postgres", "7Ronaldo");
 		return connection;
 	}
 	
@@ -51,6 +51,8 @@ public class DBManager {
 		return instance;
 	}
 	
+
+
 	private DBManager() {
 		utenti = new ArrayList<Utente>();
 		
@@ -181,7 +183,10 @@ public class DBManager {
 	public VideoDAO getVideoDAO() {
 		return new VideoDAO_JDBC();
 	}
-
+	public VotoDAO getVotoDAO()
+	{
+		return new VotoDAO_JDBS();
+	}
 	public CategoriaDAO getCategoriaDAO() {
 		return new CategoriaDAO_JDBC();
 	}
@@ -226,6 +231,27 @@ public class DBManager {
 
 	public boolean esisteEmail(String email) {
 		return getUtenteDAO().cercaPerEmail(email);
+	}
+
+
+	public void setVoto(int i, String email) {
+		getVotoDAO().setVoto(i,email);
+		
+	}
+
+
+	public ArrayList<Integer> dammiVoti(Utente utenteCorrente2) {
+		return getVotoDAO().getVoti(utenteCorrente2);
+	}
+
+
+	public String getNomeUtentePerEmail(String destinatario) {
+		return getUtenteDAO().getNomePerEmail(destinatario);
+	}
+
+
+	public String getPasswordUtentePerEmail(String destinatario) {
+		return getUtenteDAO().getPasswordPerEmail(destinatario);
 	}
 	
 	

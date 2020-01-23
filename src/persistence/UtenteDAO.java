@@ -13,4 +13,6 @@ public interface UtenteDAO {
 	public void delete(Utente utente); //Delete	
 	
 	public boolean cercaPerEmail(String email);
+	public String getNomePerEmail(String email);
+	public String getPasswordPerEmail(String email);
 }

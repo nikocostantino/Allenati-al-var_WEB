@@ -61,7 +61,7 @@ public class GestorePagine extends HttpServlet {
 				if(DBManager.getInstance().esisteEmail(email))
 				{
 					
-					InviaEmail.getInstance().inviaMail();
+					InviaEmail.getInstance().inviaMail(email);
 					
 					
 					req.getSession().setAttribute("recuperoPasswordEffettuato", "true");
