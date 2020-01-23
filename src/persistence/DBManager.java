@@ -253,6 +253,9 @@ public class DBManager {
 	public String getPasswordUtentePerEmail(String destinatario) {
 		return getUtenteDAO().getPasswordPerEmail(destinatario);
 	}
-	
+	public ArrayList<Integer> getUltimiDieciVoti(Utente utente)
+	{
+		return getVotoDAO().getUltimiDieci(utente);
+	}
 	
 }

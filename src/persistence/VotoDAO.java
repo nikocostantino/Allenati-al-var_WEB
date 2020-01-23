@@ -9,6 +9,8 @@ public interface VotoDAO {
 	public void setVoto(int i, String email);
 
 	public ArrayList<Integer> getVoti(Utente utenteCorrente2);
+	
+	public ArrayList<Integer>  getUltimiDieci(Utente utente);
 
 
 }

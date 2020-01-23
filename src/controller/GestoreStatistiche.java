@@ -15,7 +15,31 @@ public class GestoreStatistiche extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String voti=req.getParameter("voti");
+		String ultimi10Voti=req.getParameter("ultimi10Voti");
 		
+		if(ultimi10Voti!=null)
+		{
+			
+			ArrayList<Integer> listaVoti10 = DBManager.getInstance().getUltimiDieciVoti(DBManager.getInstance().getUtenteCorrente());
+
+			if(listaVoti10.size()<10)
+			{
+				for(int i=listaVoti10.size(); i<10; i++)
+				{
+					listaVoti10.add(-1);
+				}
+			}
+			
+			String totale="";
+			for(int i=0; i<10; i++)
+			{
+				totale=totale+listaVoti10.get(i)+" ";
+			}
+			totale=totale+" "+DBManager.getInstance().getUtenteCorrente().getNome()+" "+DBManager.getInstance().getUtenteCorrente().getCognome();
+			System.out.println(totale);
+			resp.getOutputStream().println(totale);
+			
+		}
 		if(voti!=null)
 		{
 			
@@ -42,5 +66,5 @@ public class GestoreStatistiche extends HttpServlet{
 			
 		}
 	}
-
 }
+

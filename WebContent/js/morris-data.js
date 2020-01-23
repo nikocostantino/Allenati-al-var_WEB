@@ -1,65 +1,63 @@
 $(function() {
-
+	var v;
+	$.ajax({
+			type: "GET",
+			url: "gestoreStatistiche",
+			data: {ultimi10Voti : "ultimi10Voti"},
+			success: function(data){
+				v=data.split(" ");
+				for(i=0; i<10; i++)
+				{
+					if(v[i]==-1)
+					{
+						v[i]=null;
+					}
+				}
+				
     Morris.Area({
         element: 'morris-area-chart',
         data: [{
-            period: '2010 Q1',
-            iphone: 2666,
-            ipad: null,
-            itouch: 2647
+            y: '1',
+            niko: v[0]
         }, {
-            period: '2010 Q2',
-            iphone: 2778,
-            ipad: 2294,
-            itouch: 2441
+            y: '2',
+            niko: v[1]
         }, {
-            period: '2010 Q3',
-            iphone: 4912,
-            ipad: 1969,
-            itouch: 2501
+            y: '3',
+            niko: v[2]
         }, {
-            period: '2010 Q4',
-            iphone: 3767,
-            ipad: 3597,
-            itouch: 5689
+            y: '4',
+            niko: v[3]
         }, {
-            period: '2011 Q1',
-            iphone: 6810,
-            ipad: 1914,
-            itouch: 2293
+            y: '5',
+            niko: v[4]
         }, {
-            period: '2011 Q2',
-            iphone: 5670,
-            ipad: 4293,
-            itouch: 1881
+            y: '6',
+            niko: v[5]
         }, {
-            period: '2011 Q3',
-            iphone: 4820,
-            ipad: 3795,
-            itouch: 1588
+            y: '7',
+            niko: v[6]
         }, {
-            period: '2011 Q4',
-            iphone: 15073,
-            ipad: 5967,
-            itouch: 5175
+            y: '8',
+            niko: v[7]
         }, {
-            period: '2012 Q1',
-            iphone: 10687,
-            ipad: 4460,
-            itouch: 2028
+            y: '9',
+            niko: v[8]
         }, {
-            period: '2012 Q2',
-            iphone: 8432,
-            ipad: 5713,
-            itouch: 1791
+            y: '10',
+            niko: v[9]
         }],
-        xkey: 'period',
-        ykeys: ['iphone', 'ipad', 'itouch'],
-        labels: ['iPhone', 'iPad', 'iPod Touch'],
-        pointSize: 2,
+        xkey: 'y',
+        ykeys: ['niko'],
+        labels: ['niko'],
+        pointSize: 1,
         hideHover: 'auto',
-        resize: true
+        resize: true,
+        parseTime: false
     });
+			}
+    	}
+);  
 
 
     	var v;

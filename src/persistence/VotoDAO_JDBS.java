@@ -64,4 +64,40 @@ public class VotoDAO_JDBS implements VotoDAO {
 		}
 	}
 
+	@Override
+	public ArrayList<Integer> getUltimiDieci(Utente utenteCorrente) {
+		Connection connection = null;
+		try {
+			connection = DBManager.getInstance().getConnection();
+
+			String insert = "select voto from voti where email=?";
+
+			PreparedStatement statement = connection.prepareStatement(insert);
+			statement.setString(1, utenteCorrente.getEmail());
+
+			ResultSet result = statement.executeQuery();
+			ArrayList<Integer> a=new ArrayList<Integer>();
+			while(result.next()) {
+				a.add((int) result.getLong("voto"));
+			}
+			if(a.size()<=10)
+				return a;
+			else
+			{
+				ArrayList<Integer> a2=new ArrayList<Integer>();
+				for(int i=a.size()-10; i<a.size(); i++)
+					a2.add(a.get(i));
+				return a2;
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
+
 }
