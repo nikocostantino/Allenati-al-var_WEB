@@ -67,7 +67,7 @@
         <!-- Modal Header -->
         <div class="modal-header">
           <h4 class="modal-title">Sei sicuro?</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <a type="button" class="close" href="" data-dismiss="modal">&times;</a>
         </div>
         
         <!-- Modal body -->
@@ -77,7 +77,7 @@
         
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+          <a type="button" class="btn btn-secondary" href="" data-dismiss="modal">Annulla</a>
           <a class="btn btn-secondary" href="prova_autovalutazione">Inizia</a>
         </div>
         
