@@ -24,6 +24,7 @@
       <li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Profilo<span class="caret"></span></a>
 				<div class="dropdown-menu">
+					<a  class="dropdown-item" href="gestorePagine?pagina=profilo">Account</a>		
       				<a class="dropdown-item" href="gestorePagine?pagina=statistiche">Statistiche</a>
 					<a  class="dropdown-item" href="gestorePagine?pagina=preferiti">Preferiti</a>
 					<a  class="dropdown-item" href="gestorePagine?pagina=storico">Storico</a>		
@@ -39,6 +40,11 @@
     <c:if test="${amministratore == true}">
 				<li class="nav-item">
 			    <a class="nav-link" href="gestorePagine?pagina=aggiungiVideo">Aggiungi Video</a>
+  				</li>
+	</c:if>
+	<c:if test="${amministratore == true}">
+				<li class="nav-item">
+			    <a class="nav-link" href="gestorePagine?pagina=richiesteAmministratori">Richieste Amministratori</a>
   				</li>
 	</c:if>
     
@@ -78,7 +84,7 @@
         <!-- Modal footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
-          <a class="btn btn-secondary" href="prova_autovalutazione">Inizia</a>
+          <a class="btn btn-secondary" href="prova_autovalutazione?inizia=true">Inizia</a>
         </div>
         
       </div>

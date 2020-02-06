@@ -28,6 +28,16 @@
  	<servlet-name>login</servlet-name>
  	<url-pattern>/html/login</url-pattern>
 </servlet-mapping>
+
+<servlet>
+  	<servlet-name>gestoreAccount</servlet-name>
+  	<servlet-class>controller.GestoreAccount</servlet-class>
+</servlet>
+  
+<servlet-mapping>
+ 	<servlet-name>gestoreAccount</servlet-name>
+ 	<url-pattern>/html/gestoreAccount</url-pattern>
+</servlet-mapping>
   
 <servlet>
  	<servlet-name>Home</servlet-name>

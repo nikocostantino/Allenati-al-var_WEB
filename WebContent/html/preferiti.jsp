@@ -22,7 +22,7 @@
 	<div class="jumbotron container">
 	
 		
-  			<h1><span class="badge badge-light">PREFERITI</span></h1>	
+  			<h1><span class="badge badge-dark">PREFERITI</span></h1>	
   				<div class="list-group">
     				
     				

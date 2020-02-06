@@ -12,4 +12,6 @@ public interface CommentiDAO {
 	public ArrayList<Commenti> findAll();       
 	public void update(String commento); //Update
 	public void delete(String url); //Delete	
+	public void deletePerEmail(String email);
+	public void modificaEmail(String email, String email2);
 }

@@ -8,9 +8,13 @@ public interface VotoDAO {
 
 	public void setVoto(int i, String email);
 
-	public ArrayList<Integer> getVoti(Utente utenteCorrente2);
+	public ArrayList<Integer> getVoti(String email);
 	
-	public ArrayList<Integer>  getUltimiDieci(Utente utente);
+	public ArrayList<Integer>  getUltimiDieci(String email);
+
+	public void deletePerEmail(String email);
+
+	public void modificaEmail(String email, String email2);
 
 
 }

@@ -39,7 +39,7 @@ public class DBManager {
 	}
 	
 	public Connection getConnection() throws SQLException {
-		Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AllenatiALVAR_WEB", "postgres", "7Ronaldo");
+		Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AllenatiALVAR_WEB", "postgres", "Simone_10");
 		return connection;
 	}
 	
@@ -240,8 +240,8 @@ public class DBManager {
 	}
 
 
-	public ArrayList<Integer> dammiVoti(Utente utenteCorrente2) {
-		return getVotoDAO().getVoti(utenteCorrente2);
+	public ArrayList<Integer> dammiVoti(String email) {
+		return getVotoDAO().getVoti(email);
 	}
 
 
@@ -253,9 +253,95 @@ public class DBManager {
 	public String getPasswordUtentePerEmail(String destinatario) {
 		return getUtenteDAO().getPasswordPerEmail(destinatario);
 	}
-	public ArrayList<Integer> getUltimiDieciVoti(Utente utente)
+	public ArrayList<Integer> getUltimiDieciVoti(String email)
 	{
-		return getVotoDAO().getUltimiDieci(utente);
+		return getVotoDAO().getUltimiDieci(email);
 	}
+
+
+	public void eliminaAccount(Utente utente) {
+		getUtenteDAO().delete(utente);
+	}
+
+
+	public void eliminaCategoria(Utente utenteCorrente2) {
+		getCategoriaDAO().deletePerEmail(utenteCorrente2.getEmail());
+		
+	}
+
+
+	public void eliminaCommenti(Utente utenteCorrente2) {
+		getCommentiDAO().deletePerEmail(utenteCorrente2.getEmail());
+	}
+
+
+	public void eliminaEsiti(Utente utenteCorrente2) {
+		getEsitoDAO().deletePerEmail(utenteCorrente2.getEmail());
+	}
+
+
+	public void eliminaPreferiti(Utente utenteCorrente2) {
+		getPreferitiDAO().deletePerEmail(utenteCorrente2.getEmail());
+		
+	}
+
+
+	public void eliminaVoti(Utente utenteCorrente2) {
+		getVotoDAO().deletePerEmail(utenteCorrente2.getEmail());	
+	}
+
+
+	public void modificaEmailCategoria(String email, String email2) {
+		getCategoriaDAO().modificaEmail(email, email2);
+	}
+
+
+	public void modificaEmailCommenti(String email, String email2) {
+		getCommentiDAO().modificaEmail(email, email2);	
+	}
+
+
+	public void modificaEmailEsiti(String email, String email2) {
+		getEsitoDAO().modificaEmail(email, email2);
+	}
+
+
+	public void modificaEmailPreferiti(String email, String email2) {
+		getPreferitiDAO().modificaEmail(email, email2);
+	}
+
+
+	public void modificaEmailVoti(String email, String email2) {
+		getVotoDAO().modificaEmail(email, email2);
+	}
+
+
+	public void modificaPassword(String nuovaPassword) {
+		getUtenteDAO().modificaPassword(nuovaPassword);
+		
+	}
+
+
+	public void inserisciRichiesta(String email) {
+		getUtenteDAO().inserisciRichiesta(email);
+	}
+
+
+	public ArrayList<String> getRichieste() {
+		return getUtenteDAO().getRichieste();
+	}
+
+
+	public void declinaAmministratore(String email) {
+		getUtenteDAO().declinaAmministratore(email);
+	}
+
+
+	public void updateUtenteAmministratore(String email) {
+		getUtenteDAO().accettaAmministratore(email);
+	}
+
+
+	
 	
 }

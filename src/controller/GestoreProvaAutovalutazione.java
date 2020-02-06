@@ -28,7 +28,11 @@ public class GestoreProvaAutovalutazione extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher rd = req.getRequestDispatcher("prova_autovalutazione.jsp");
 
-		if (req.getParameter("risposta") == null) {
+	
+		
+		
+		if (req.getParameter("inizia") != null && req.getParameter("inizia").equals("true")) {
+			System.out.println("sono nel primo if");
 			lista_video_con_risposta_utente.clear();
 			risposteErrate = 0;
 			video_nel_db = DBManager.getInstance().getVideo();
@@ -49,8 +53,39 @@ public class GestoreProvaAutovalutazione extends HttpServlet {
 			}
 			req.getSession().setAttribute("videoProva", videoProva);
 			req.getSession().setAttribute("dimensione", videoProva.size());
-		} else {
+		}
+		else if (req.getParameter("termina") != null && req.getParameter("termina").equals("true")) {
+			System.out.println("sono nell'else if");
+			while(lista_video_con_risposta_utente.size() < 10) {
+
+				videoProva.get(0).getRisposte().setRispostaUtente(false);
+				lista_video_con_risposta_utente.add(videoProva.get(0));
+				videoProva.remove(0);
+			}
 			
+			if (videoProva.isEmpty()) {
+				
+				Esito esito = new Esito(lista_video_con_risposta_utente);
+				
+				for (Video video : lista_video_con_risposta_utente) {
+					if(!video.getRisposte().getRispostaUtente())
+						risposteErrate++;
+				}
+				
+				if(risposteErrate>4)
+					esito.setRisultato(false);
+				DBManager.getInstance().setVoto(10-risposteErrate, DBManager.getInstance().getUtenteCorrente().getEmail());
+
+				DBManager.getInstance().aggiungiAlloStorico(esito);
+				rd = req.getRequestDispatcher("esito.jsp");
+				req.getSession().setAttribute("esito", lista_video_con_risposta_utente);
+				
+
+			}
+			
+		}
+		else {
+			System.out.println("sono nell'else");
 			if (req.getParameter("risposta").equals(DBManager.getInstance().getVideoDAO().getRispostaCorretta(videoProva.get(0).getUrl())))
 				videoProva.get(0).getRisposte().setRispostaUtente(true);
 			else
@@ -69,8 +104,8 @@ public class GestoreProvaAutovalutazione extends HttpServlet {
 				if(risposteErrate>4)
 					esito.setRisultato(false);
 				
-				DBManager.getInstance().setVoto(10-risposteErrate,DBManager.getInstance().getUtenteCorrente().getEmail());
 				DBManager.getInstance().aggiungiAlloStorico(esito);
+				DBManager.getInstance().setVoto(10-risposteErrate, DBManager.getInstance().getUtenteCorrente().getEmail());
 				rd = req.getRequestDispatcher("esito.jsp");
 				req.getSession().setAttribute("esito", lista_video_con_risposta_utente);
 			}

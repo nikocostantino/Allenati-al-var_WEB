@@ -223,4 +223,43 @@ public class EsitoDAO_JDBC implements EsitoDAO{
 		
 	}
 
+	@Override
+	public void deletePerEmail(String email) {
+		Connection connection = null;
+		try {
+			connection = DBManager.getInstance().getConnection();
+			PreparedStatement statement;
+			String query = "DELETE FROM esiti WHERE fk_utente = ?";
+			statement = connection.prepareStatement(query);
+			statement.setString(1, email);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 		
+	}
+
+	@Override
+	public void modificaEmail(String email, String email2) {
+		Connection connection = null;
+		try {
+			connection = DBManager.getInstance().getConnection();
+
+			String insert = "UPDATE esiti SET fk_utente=? WHERE fk_utente=?";
+			PreparedStatement statement = connection.prepareStatement(insert);
+
+			statement.setString(1, email2);
+			statement.setString(2, email);
+				
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}		
+	}
+
 }

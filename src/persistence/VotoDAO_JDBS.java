@@ -37,7 +37,7 @@ public class VotoDAO_JDBS implements VotoDAO {
 	}
 
 	@Override
-	public ArrayList<Integer> getVoti(Utente utenteCorrente2) {
+	public ArrayList<Integer> getVoti(String email) {
 		Connection connection = null;
 		try {
 			connection = DBManager.getInstance().getConnection();
@@ -45,7 +45,7 @@ public class VotoDAO_JDBS implements VotoDAO {
 			String insert = "select voto from voti where email=?";
 
 			PreparedStatement statement = connection.prepareStatement(insert);
-			statement.setString(1, utenteCorrente2.getEmail());
+			statement.setString(1, email);
 
 			ResultSet result = statement.executeQuery();
 			ArrayList<Integer> a=new ArrayList<Integer>();
@@ -65,7 +65,7 @@ public class VotoDAO_JDBS implements VotoDAO {
 	}
 
 	@Override
-	public ArrayList<Integer> getUltimiDieci(Utente utenteCorrente) {
+	public ArrayList<Integer> getUltimiDieci(String email) {
 		Connection connection = null;
 		try {
 			connection = DBManager.getInstance().getConnection();
@@ -73,7 +73,7 @@ public class VotoDAO_JDBS implements VotoDAO {
 			String insert = "select voto from voti where email=?";
 
 			PreparedStatement statement = connection.prepareStatement(insert);
-			statement.setString(1, utenteCorrente.getEmail());
+			statement.setString(1, email);
 
 			ResultSet result = statement.executeQuery();
 			ArrayList<Integer> a=new ArrayList<Integer>();
@@ -98,6 +98,45 @@ public class VotoDAO_JDBS implements VotoDAO {
 				throw new RuntimeException(e.getMessage());
 			}
 		}
+	}
+
+	@Override
+	public void deletePerEmail(String email) {
+		Connection connection = null;
+		try {
+			connection = DBManager.getInstance().getConnection();
+			PreparedStatement statement;
+			String query = "DELETE FROM voti WHERE email = ?";
+			statement = connection.prepareStatement(query);
+			statement.setString(1, email);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 		
+	}
+
+	@Override
+	public void modificaEmail(String email, String email2) {
+		Connection connection = null;
+		try {
+			connection = DBManager.getInstance().getConnection();
+
+			String insert = "UPDATE voti SET email=? WHERE email=?";
+			PreparedStatement statement = connection.prepareStatement(insert);
+
+			statement.setString(1, email2);
+			statement.setString(2, email);
+				
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}		
 	}
 
 }

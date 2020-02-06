@@ -33,8 +33,46 @@ public class GestorePagine extends HttpServlet {
 				RequestDispatcher rd = req.getRequestDispatcher(pagina+".jsp");
 				rd.forward(req, resp);
 			}
+			else if(pagina.contentEquals("richiesteAmministratori"))
+			{
+				req.getSession().setAttribute("richiesteAmministratori", DBManager.getInstance().getRichieste());
+				System.out.println(DBManager.getInstance().getRichieste());
+				RequestDispatcher rd = req.getRequestDispatcher(pagina+".jsp");
+				rd.forward(req, resp);
+			}
+			else if(pagina.contentEquals("profilo"))
+			{
+				req.getSession().setAttribute("nome", DBManager.getInstance().getUtenteCorrente().getNome());
+				req.getSession().setAttribute("cognome", DBManager.getInstance().getUtenteCorrente().getCognome());
+				req.getSession().setAttribute("email", DBManager.getInstance().getUtenteCorrente().getEmail());
+				req.getSession().setAttribute("password", DBManager.getInstance().getUtenteCorrente().getPassword());
+				
+					req.getSession().setAttribute("amministratore", DBManager.getInstance().getUtenteCorrente().getAmministratore());
+				
+					
+				if(req.getParameter("salvaModifiche")!=null)
+				{
+					req.getSession().setAttribute("modificheEffettuate", true);
+				}
+				if(req.getParameter("salvaPassword")!=null)
+				{
+					req.getSession().setAttribute("passwordModificata", true);
+				}
+					
+				RequestDispatcher rd = req.getRequestDispatcher(pagina+".jsp");
+				rd.forward(req, resp);
+				
+				if(req.getParameter("salvaModifiche")!=null)
+				{
+					req.getSession().removeAttribute("modificheEffettuate");
+				}
+				if(req.getParameter("salvaPassword")!=null)
+				{
+					req.getSession().removeAttribute("passwordModificata");
+				}
+			}
 			else if(pagina.contentEquals("registrati")){
-				//operzioni per la pagina di registrazione
+				//operazioni per la pagina di registrazione
 				req.getSession().removeAttribute("nome");
 				req.getSession().removeAttribute("cognome");
 				req.getSession().removeAttribute("email");
@@ -48,6 +86,13 @@ public class GestorePagine extends HttpServlet {
 				RequestDispatcher rd = req.getRequestDispatcher(pagina+".jsp");
 				rd.forward(req, resp);
 				return;
+			}
+			else if(pagina.equals("statistiche"))
+			{
+				String email= req.getParameter("email");
+				req.getSession().setAttribute("email", email);
+				RequestDispatcher rd = req.getRequestDispatcher(pagina+".jsp");
+				rd.forward(req, resp);
 			}
 			else if(pagina.equals("modificaVideo"))
 			{

@@ -31,11 +31,25 @@
 
 	    	<form method="POST" action="login?login=true">
 	      	
+	      		<c:if test="${eliminazioneCompletata != null}">
+	      		
+					<div class="alert alert-success alert-dismissible fade show" id="formatRegistrazione" role="alert">
+					  <strong>Eliminazione completata!</strong> Il tuo account è stato cancellato con successo.
+					</div>
+	      		</c:if>
+	      	
 		      	<c:if test="${registrazioneEffettuata != null}">
 		      		<div class="alert alert-success alert-dismissible fade show" id="formatRegistrazione" role="alert">
-						  <strong>Registrazione avvenuta con successo!</strong>
+						  <strong>Registrazione avvenuta con successo!</strong><br>
+						  <c:if test="${amministratore != null}">
+						  La richiesta per poter diventare un amministratore è stata presa in carico. <br>Intanto puoi effettuare l'accesso come utente normale.</strong>
+						  </c:if>
 						</div>
 		      	</c:if>
+		      	
+		      	
+		      	
+		      	
 		      	
 		      	<c:if test="${recuperoPasswordEffettuato != null}">
 		      		<div class="alert alert-success alert-dismissible fade show" id="formatRegistrazione" role="alert">
@@ -48,10 +62,8 @@
 	      		<input type="email" id="email" class="fadeIn second" name="email" placeholder="email" required/>
 	      		
 	      		<input type="password" id="password" class="fadeIn second" name="password" placeholder="password" required/>
-	      	<c:if test="${loginSbagliato != null}">
-	      		<div id="loginErrato" class="inactive">
+	      	<c:if test="${loginSbagliato == true}">
 	      			<div id="formatErrato" class='alert alert-danger alert-dismissible fade show' role='alert'><strong>Email e/o password errati!</strong></div>
-	      		</div>
 	      	</c:if>
 	      	
 	      	<br>
@@ -70,7 +82,12 @@
 		</div>
 	</div>
 </div>
-
+<script type="text/javascript"> 
+window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 5000);</script>
 
 </body>
 </html>

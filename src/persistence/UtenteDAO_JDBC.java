@@ -84,8 +84,17 @@ public class UtenteDAO_JDBC implements UtenteDAO{
 
 	@Override
 	public void delete(Utente utente) {
-		// TODO Auto-generated method stub
-		
+		Connection connection = null;
+		try {
+			connection = DBManager.getInstance().getConnection();
+			PreparedStatement statement;
+			String query = "DELETE FROM utenti WHERE email = ?";
+			statement = connection.prepareStatement(query);
+			statement.setString(1, utente.getEmail());
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
 	}
 	
 	@Override
@@ -173,6 +182,143 @@ public class UtenteDAO_JDBC implements UtenteDAO{
 			}
 		}	
 		return utente.getPassword();
+	}
+
+	@Override
+	public void update(String emailVecchia, String nome, String cognome, String emailNuova) {
+		Connection connection = null;
+		try {
+			connection = DBManager.getInstance().getConnection();
+
+			String insert = "UPDATE utenti SET nome=?, cognome=?, email=? WHERE email=?";
+			PreparedStatement statement = connection.prepareStatement(insert);
+
+			statement.setString(1, nome);
+			statement.setString(2, cognome);
+			statement.setString(3, emailNuova);
+			statement.setString(4, emailVecchia);			
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
+
+	@Override
+	public void modificaPassword(String nuovaPassword) {
+		Connection connection = null;
+		try {
+			connection = DBManager.getInstance().getConnection();
+
+			String insert = "UPDATE utenti SET password=? WHERE email=?";
+			PreparedStatement statement = connection.prepareStatement(insert);
+
+			statement.setString(1, nuovaPassword);
+			statement.setString(2, DBManager.getInstance().getUtenteCorrente().getEmail());
+					
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
+
+	@Override
+	public void inserisciRichiesta(String email) {
+		Connection connection = null;
+		try {
+			connection = DBManager.getInstance().getConnection();
+			String insert = "insert into richieste(email) values (?)";
+			PreparedStatement statement = connection.prepareStatement(insert);
+			statement.setString(1, email);
+			
+			
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}		
+	}
+
+	@Override
+	public ArrayList<String> getRichieste() {
+		Connection connection = null;
+		ArrayList<String> lista = new ArrayList<String>();
+
+		try {
+			connection = DBManager.getInstance().getConnection();
+			String query = "select * from richieste";
+			PreparedStatement statement = connection.prepareStatement(query);			
+			ResultSet result = statement.executeQuery();
+			while(result.next())
+			{
+				lista.add(result.getString("email"));
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		return lista;
+	}
+
+	@Override
+	public void declinaAmministratore(String email) {
+		Connection connection = null;
+		try {
+			connection = DBManager.getInstance().getConnection();
+			PreparedStatement statement;
+			String query = "DELETE FROM richieste WHERE email = ?";
+			statement = connection.prepareStatement(query);
+			statement.setString(1, email);
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+	}
+
+	@Override
+	public void accettaAmministratore(String email) {
+		Connection connection = null;
+		try {
+			connection = DBManager.getInstance().getConnection();
+
+			String insert = "UPDATE utenti SET amministratore=? WHERE email=?";
+			PreparedStatement statement = connection.prepareStatement(insert);
+
+			statement.setBoolean(1, true);
+			statement.setString(2, email);
+					
+			statement.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}		
 	}
 
 }

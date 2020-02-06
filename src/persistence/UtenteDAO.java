@@ -15,4 +15,10 @@ public interface UtenteDAO {
 	public boolean cercaPerEmail(String email);
 	public String getNomePerEmail(String email);
 	public String getPasswordPerEmail(String email);
+	public void update(String emailVecchia, String nome, String cognome, String emailNuova);
+	public void modificaPassword(String nuovaPassword);
+	public void inserisciRichiesta(String email);
+	public ArrayList<String> getRichieste();
+	public void declinaAmministratore(String email);
+	public void accettaAmministratore(String email);
 }

@@ -24,7 +24,14 @@
 <body>
 
 	<div id="jumbo_top" class="jumbotron">
-		<h1 style="text-align: center;" > <span class="badge badge-dark" id="text_prova"> PROVA DI AUTOVALUTAZIONE </span></h1>
+		<div class="row">
+			<div class="column col-sm-11">
+				<h1 style="text-align: center;" > <span class="badge badge-dark" id="text_prova"> PROVA DI AUTOVALUTAZIONE </span></h1>
+			</div>
+			<div class="column col-sm-1">
+				<a class="btn btn-danger" href="prova_autovalutazione?termina=true" id="buttonTermina">TERMINA</a>
+			</div>
+		</div>
 	</div>
 	
 	<c:set var = "videoProva" scope = "session" value = "${videoProva}"/>

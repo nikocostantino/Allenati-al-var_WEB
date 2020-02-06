@@ -14,5 +14,7 @@ public interface CategoriaDAO {
 	public void update(Categoria categoria); //Update
 	public void delete(Video video); //Delete	
 	public void deleteUrlCategoria(String url);
+	public void deletePerEmail(String email);
+	public void modificaEmail(String email, String email2);
 
 }

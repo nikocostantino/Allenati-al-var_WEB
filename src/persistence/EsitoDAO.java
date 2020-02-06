@@ -14,4 +14,6 @@ public interface EsitoDAO {
 	public void delete(String url); //Delete	
 	
 	public ArrayList<Video> getEsito(String email, int id_esito);
+	public void deletePerEmail(String email);
+	public void modificaEmail(String email, String email2);
 }

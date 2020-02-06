@@ -13,4 +13,6 @@ public interface PreferitiDAO {
 	public void delete(Video video); //Delete
 	public void deleteUrlPreferiti(String url);
 	public Video getVideo(String url, String email);
+	public void deletePerEmail(String email);
+	public void modificaEmail(String email, String email2);
 }

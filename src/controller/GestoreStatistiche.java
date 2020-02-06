@@ -16,11 +16,21 @@ public class GestoreStatistiche extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String voti=req.getParameter("voti");
 		String ultimi10Voti=req.getParameter("ultimi10Voti");
-		
+
+		String email = (String) req.getSession().getAttribute("email");
 		if(ultimi10Voti!=null)
 		{
+			ArrayList<Integer> listaVoti10;
+			if(email!=null)
+			{
+				listaVoti10 = DBManager.getInstance().getUltimiDieciVoti(email);
+
+			}
+			else
+			{
+				listaVoti10 = DBManager.getInstance().getUltimiDieciVoti(DBManager.getInstance().getUtenteCorrente().getEmail());
+			}
 			
-			ArrayList<Integer> listaVoti10 = DBManager.getInstance().getUltimiDieciVoti(DBManager.getInstance().getUtenteCorrente());
 
 			if(listaVoti10.size()<10)
 			{
@@ -43,7 +53,18 @@ public class GestoreStatistiche extends HttpServlet{
 		if(voti!=null)
 		{
 			
-			ArrayList<Integer> listaVoti = DBManager.getInstance().dammiVoti(DBManager.getInstance().getUtenteCorrente());
+			ArrayList<Integer> listaVoti;
+			if(email!=null)
+			{
+				listaVoti = DBManager.getInstance().dammiVoti(email);
+
+			}
+			else
+			{
+				listaVoti = DBManager.getInstance().dammiVoti(DBManager.getInstance().getUtenteCorrente().getEmail());
+			}
+			
+			
 			
 			System.out.println("lista voti ="+listaVoti);
 			
