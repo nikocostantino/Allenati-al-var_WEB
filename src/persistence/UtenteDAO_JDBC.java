@@ -321,4 +321,218 @@ public class UtenteDAO_JDBC implements UtenteDAO{
 		}		
 	}
 
+	@Override
+	public int getProveEffettuate(String email) {
+		Connection connection = null;
+		ArrayList<String> lista = new ArrayList<String>();
+
+		try {
+			connection = DBManager.getInstance().getConnection();
+			String query = "select * from voti where email=?";
+			PreparedStatement statement = connection.prepareStatement(query);	
+			statement.setString(1, email);
+			ResultSet result = statement.executeQuery();
+			while(result.next())
+			{
+				lista.add(result.getString("id"));
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		
+		return lista.size();		
+	}
+
+	@Override
+	public int getProveSuperate(String email) {
+		Connection connection = null;
+		ArrayList<String> lista = new ArrayList<String>();
+
+		try {
+			connection = DBManager.getInstance().getConnection();
+			String query = "select * from voti where email=?";
+			PreparedStatement statement = connection.prepareStatement(query);	
+			statement.setString(1, email);
+			ResultSet result = statement.executeQuery();
+			while(result.next())
+			{
+				if(result.getInt("voto")>=6)
+					lista.add(result.getString("id"));
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		
+		return lista.size();		
+	}
+
+	@Override
+	public int getProveNonSuperate(String email) {
+		Connection connection = null;
+		ArrayList<String> lista = new ArrayList<String>();
+
+		try {
+			connection = DBManager.getInstance().getConnection();
+			String query = "select * from voti where email=?";
+			PreparedStatement statement = connection.prepareStatement(query);	
+			statement.setString(1, email);
+			ResultSet result = statement.executeQuery();
+			while(result.next())
+			{
+				if(result.getInt("voto")<6)
+					lista.add(result.getString("id"));
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		
+		return lista.size();		
+	}
+
+	@Override
+	public double getMedia(String email) {
+		Connection connection = null;
+		double somma = 0;
+		double cont = 0;
+		try {
+			connection = DBManager.getInstance().getConnection();
+			String query = "select * from voti where email=?";
+			PreparedStatement statement = connection.prepareStatement(query);	
+			statement.setString(1, email);
+			ResultSet result = statement.executeQuery();
+			while(result.next())
+			{
+					somma += result.getInt("voto");
+					cont++;
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		double media= somma/cont;
+		double temp = Math.pow(10,2);
+		return Math.rint(media * temp) / temp;
+	}
+
+	@Override
+	public int getVotoPiuFrequente(String email) {
+		Connection connection = null;
+		ArrayList<Integer> lista = new ArrayList<Integer>();
+
+		try {
+			connection = DBManager.getInstance().getConnection();
+			String query = "select * from voti where email=?";
+			PreparedStatement statement = connection.prepareStatement(query);	
+			statement.setString(1, email);
+			ResultSet result = statement.executeQuery();
+			while(result.next())
+			{
+					lista.add(result.getInt("voto"));
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		
+		int massimo = 0;
+		int cont=0;
+		int contMax=0;
+		for(int i=0; i<=10; i++)
+		{
+			cont=0;
+			for(int j=0; j<lista.size(); j++)
+			{
+				if(lista.get(j) == i)
+					cont++;
+			}
+			if(cont>=contMax)
+			{
+				massimo=i;
+				contMax=cont;
+			}
+			
+		}
+		return massimo;		
+	}
+
+	@Override
+	public int getVotoMenoFrequente(String email) {
+		Connection connection = null;
+		ArrayList<Integer> lista = new ArrayList<Integer>();
+
+		try {
+			connection = DBManager.getInstance().getConnection();
+			String query = "select * from voti where email=?";
+			PreparedStatement statement = connection.prepareStatement(query);	
+			statement.setString(1, email);
+			ResultSet result = statement.executeQuery();
+			while(result.next())
+			{
+					lista.add(result.getInt("voto"));
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		
+		int massimo = 0;
+		int cont=0;
+		int contMax=1000;
+		for(int i=0; i<=10; i++)
+		{
+			cont=0;
+			for(int j=0; j<lista.size(); j++)
+			{
+				if(lista.get(j) == i)
+					cont++;
+			}
+			if(cont<contMax && cont>=1)
+			{
+				massimo=i;
+				contMax=cont;
+			}
+			
+		}
+		return massimo;	
+	}
+
 }

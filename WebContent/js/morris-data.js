@@ -17,39 +17,39 @@ $(function() {
     Morris.Area({
         element: 'morris-area-chart',
         data: [{
-            y: '1',
-            niko: v[0]
+            y: '1 di 10',
+            voto: v[0]
         }, {
-            y: '2',
-            niko: v[1]
+            y: '2 di 10',
+            voto: v[1]
+        }, { 
+            y: '3 di 10',
+            voto: v[2]
         }, {
-            y: '3',
-            niko: v[2]
+            y: '4 di 10',
+            voto: v[3]
         }, {
-            y: '4',
-            niko: v[3]
+            y: '5 di 10',
+            voto: v[4]
         }, {
-            y: '5',
-            niko: v[4]
+            y: '6 di 10',
+            voto: v[5]
         }, {
-            y: '6',
-            niko: v[5]
+            y: '7 di 10',
+            voto: v[6]
         }, {
-            y: '7',
-            niko: v[6]
+            y: '8 di 10',
+            voto: v[7]
         }, {
-            y: '8',
-            niko: v[7]
+            y: '9 di 10',
+            voto: v[8]
         }, {
-            y: '9',
-            niko: v[8]
-        }, {
-            y: '10',
-            niko: v[9]
+            y: '10 di 10',
+            voto: v[9]
         }],
         xkey: 'y',
-        ykeys: ['niko'],
-        labels: ['niko'],
+        ykeys: ['voto'],
+        labels: ['voto'],
         pointSize: 1,
         hideHover: 'auto',
         resize: true,

@@ -21,4 +21,10 @@ public interface UtenteDAO {
 	public ArrayList<String> getRichieste();
 	public void declinaAmministratore(String email);
 	public void accettaAmministratore(String email);
+	public int getProveEffettuate(String email);
+	public int getProveSuperate(String email);
+	public int getProveNonSuperate(String email);
+	public double getMedia(String email);
+	public int getVotoPiuFrequente(String email);
+	public int getVotoMenoFrequente(String email);
 }

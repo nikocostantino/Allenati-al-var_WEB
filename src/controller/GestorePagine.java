@@ -91,6 +91,39 @@ public class GestorePagine extends HttpServlet {
 			{
 				String email= req.getParameter("email");
 				req.getSession().setAttribute("email", email);
+				int proveEffettuate;
+				int proveSuperate;
+				int proveNonSuperate;
+				double media;
+				int votoPiuFrequente;
+				int votoMenoFrequente;
+				if(email!=null)
+				{
+					proveEffettuate = DBManager.getInstance().getProveEffettuate(email);
+					proveSuperate = DBManager.getInstance().getProveSuperate(email);
+					proveNonSuperate = DBManager.getInstance().getProveNonSuperate(email);
+					media = DBManager.getInstance().getMedia(email);
+					votoPiuFrequente = DBManager.getInstance().getVotoPiuFrequente(email);
+					votoMenoFrequente = DBManager.getInstance().getVotoPiuFrequente(email);
+
+				}
+				else
+				{
+					proveEffettuate = DBManager.getInstance().getProveEffettuate(DBManager.getInstance().getUtenteCorrente().getEmail());
+					proveSuperate = DBManager.getInstance().getProveSuperate(DBManager.getInstance().getUtenteCorrente().getEmail());
+					proveNonSuperate = DBManager.getInstance().getProveNonSuperate(DBManager.getInstance().getUtenteCorrente().getEmail());
+					media = DBManager.getInstance().getMedia(DBManager.getInstance().getUtenteCorrente().getEmail());
+					votoPiuFrequente = DBManager.getInstance().getVotoPiuFrequente(DBManager.getInstance().getUtenteCorrente().getEmail());
+					votoMenoFrequente = DBManager.getInstance().getVotoMenoFrequente(DBManager.getInstance().getUtenteCorrente().getEmail());
+				}
+				req.getSession().setAttribute("proveEffettuate", proveEffettuate);
+				req.getSession().setAttribute("proveSuperate", proveSuperate);
+				req.getSession().setAttribute("proveNonSuperate", proveNonSuperate);
+				req.getSession().setAttribute("media", media);
+				req.getSession().setAttribute("votoPiuFrequente", votoPiuFrequente);
+				req.getSession().setAttribute("votoMenoFrequente", votoMenoFrequente);
+
+
 				RequestDispatcher rd = req.getRequestDispatcher(pagina+".jsp");
 				rd.forward(req, resp);
 			}

@@ -342,6 +342,36 @@ public class DBManager {
 	}
 
 
+	public int getProveEffettuate(String email) {
+		return getUtenteDAO().getProveEffettuate(email);
+	}
+
+
+	public int getProveSuperate(String email) {
+		return getUtenteDAO().getProveSuperate(email);
+	}
+
+
+	public int getProveNonSuperate(String email) {
+		return getUtenteDAO().getProveNonSuperate(email);
+	}
+
+
+	public double getMedia(String email) {
+		return getUtenteDAO().getMedia(email);
+	}
+
+
+	public int getVotoPiuFrequente(String email) {
+		return getUtenteDAO().getVotoPiuFrequente(email);
+	}
+
+
+	public int getVotoMenoFrequente(String email) {
+		return getUtenteDAO().getVotoMenoFrequente(email);
+	}
+
+
 	
 	
 }
