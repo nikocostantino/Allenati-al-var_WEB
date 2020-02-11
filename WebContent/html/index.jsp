@@ -41,7 +41,7 @@
 		      	<c:if test="${registrazioneEffettuata != null}">
 		      		<div class="alert alert-success alert-dismissible fade show" id="formatRegistrazione" role="alert">
 						  <strong>Registrazione avvenuta con successo!</strong><br>
-						  <c:if test="${amministratore != null}">
+						  <c:if test="${amministratore == true}">
 						  La richiesta per poter diventare un amministratore è stata presa in carico. <br>Intanto puoi effettuare l'accesso come utente normale.</strong>
 						  </c:if>
 						</div>

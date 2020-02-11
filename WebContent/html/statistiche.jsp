@@ -94,7 +94,8 @@
                                    <h4> <i class="fa fa-bar-chart-o fa-fw"></i> Andamento ultime 10 prove</h4>
                                 </div>
                                 <div class="panel-body">
-                                    <div id="morris-area-chart"></div>
+                                     <c:if test="${proveEffettuate!=0}"><div id="morris-area-chart"></div></c:if>
+                                    <c:if test="${proveEffettuate==0}"><h3>Non sono state svolte prove!</h3></c:if>
                                 </div>
                                 <!-- /.panel-body -->
                             </div>
@@ -113,8 +114,8 @@
                                     <h4><i class="fa fa-bar-chart-o fa-fw"></i> Voti ottenuti</h4>
                                 </div>
                                 <div class="panel-body">
-                                    <div id="morris-donut-chart"></div>
-                                    
+                                    <c:if test="${proveEffettuate!=0}"><div id="morris-donut-chart"></div></c:if>
+                                    <c:if test="${proveEffettuate==0}"><h3>Non sono state svolte prove!</h3></c:if>
                                 </div>
                                 <!-- /.panel-body -->
                             </div>

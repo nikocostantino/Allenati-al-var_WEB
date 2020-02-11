@@ -466,7 +466,10 @@ public class UtenteDAO_JDBC implements UtenteDAO{
 				throw new RuntimeException(e.getMessage());
 			}
 		}
-		
+		if(lista.size()==0)
+		{
+			return -1;
+		}
 		int massimo = 0;
 		int cont=0;
 		int contMax=0;
@@ -513,7 +516,10 @@ public class UtenteDAO_JDBC implements UtenteDAO{
 				throw new RuntimeException(e.getMessage());
 			}
 		}
-		
+		if(lista.size()==0)
+		{
+			return -1;
+		}
 		int massimo = 0;
 		int cont=0;
 		int contMax=1000;

@@ -104,7 +104,7 @@ public class GestorePagine extends HttpServlet {
 					proveNonSuperate = DBManager.getInstance().getProveNonSuperate(email);
 					media = DBManager.getInstance().getMedia(email);
 					votoPiuFrequente = DBManager.getInstance().getVotoPiuFrequente(email);
-					votoMenoFrequente = DBManager.getInstance().getVotoPiuFrequente(email);
+					votoMenoFrequente = DBManager.getInstance().getVotoMenoFrequente(email);
 
 				}
 				else
@@ -120,8 +120,15 @@ public class GestorePagine extends HttpServlet {
 				req.getSession().setAttribute("proveSuperate", proveSuperate);
 				req.getSession().setAttribute("proveNonSuperate", proveNonSuperate);
 				req.getSession().setAttribute("media", media);
-				req.getSession().setAttribute("votoPiuFrequente", votoPiuFrequente);
-				req.getSession().setAttribute("votoMenoFrequente", votoMenoFrequente);
+				if(votoPiuFrequente==-1)
+					req.getSession().setAttribute("votoPiuFrequente", "-");
+				else
+					req.getSession().setAttribute("votoPiuFrequente", votoPiuFrequente);
+				
+				if(votoMenoFrequente==-1)
+					req.getSession().setAttribute("votoMenoFrequente", "-");
+				else
+					req.getSession().setAttribute("votoMenoFrequente", votoMenoFrequente);
 
 
 				RequestDispatcher rd = req.getRequestDispatcher(pagina+".jsp");

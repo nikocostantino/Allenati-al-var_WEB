@@ -85,6 +85,7 @@ public class GestoreAccount extends HttpServlet{
 		else if(req.getParameter("declina")!=null)
 		{
 			DBManager.getInstance().declinaAmministratore(req.getParameter("declina"));
+			InviaEmail.getInstance().inviaMailApprovazioneAmministratore(req.getParameter("declina"), "no");
 			RequestDispatcher rd = req.getRequestDispatcher("richiesteAmministratori.jsp");
 			rd.forward(req, resp);
 		}
@@ -92,6 +93,8 @@ public class GestoreAccount extends HttpServlet{
 		{
 			DBManager.getInstance().declinaAmministratore(req.getParameter("accettaRichiesta"));
 			DBManager.getInstance().updateUtenteAmministratore(req.getParameter("accettaRichiesta"));
+			InviaEmail.getInstance().inviaMailApprovazioneAmministratore(req.getParameter("accettaRichiesta"), "si");
+
 			RequestDispatcher rd = req.getRequestDispatcher("richiesteAmministratori.jsp");
 			rd.forward(req, resp);
 		}
