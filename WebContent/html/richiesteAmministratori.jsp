@@ -37,13 +37,13 @@
 								
 						
 						
-							<div class="row">
+								<div class="row">
 							
-								<div class="column">
+								<div class="col-sm">
 									<h2><span class="badge badge-light">Richiesta amministratore da ${s}</span></h2>
 
 								</div>	
-								<div class="column">
+								<div class="col-sm">
 								<div id="ricAmm" align="right">
 								<a type="button" class="btn btn-success btn-sm" href="javascript:accetta('<c:out value="${s}"/>')">Approva</a>
 								<a type="button" class="btn btn-info btn-sm" href="gestorePagine?pagina=statistiche&&email=${s}">Statistiche</a>
@@ -52,7 +52,7 @@
 								</div>
 								</div>	
 								
-							</div>
+								</div>
 						
 					</li>
 				

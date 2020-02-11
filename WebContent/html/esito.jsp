@@ -10,6 +10,8 @@
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="../css/esito.css" type="text/css">
+	<link rel="stylesheet" href="../css/home.css" type="text/css">
+	
 	
 	
 	<meta charset="UTF-8">

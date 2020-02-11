@@ -18,6 +18,12 @@ body {
   float: left;
   padding: 10px;
 }
+.col-sm{
+	 float: left;
+  padding: 10px;
+	
+}
+
 
 .left {
   width: 35%;

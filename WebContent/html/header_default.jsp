@@ -83,7 +83,7 @@
         
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annulla</button>
+          <a type="button" class="btn btn-secondary" href="#" data-dismiss="modal">Annulla</a>
           <a class="btn btn-secondary" href="prova_autovalutazione?inizia=true">Inizia</a>
         </div>
         
