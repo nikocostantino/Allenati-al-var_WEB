@@ -32,30 +32,29 @@
 			<c:forEach items="${storico}" var="s">
 				<c:if test="${s.risultato==true}">
 					<li class="list-group-item list-group-item-success">
-						<a href="esito?data=${s.data}&&id_esito=${s.id}">
+						
 							<div class="row">
 							
-								<div class="column">
-									<p class="badge badge-light">Prova di autovalutazione del ${s.data}</p>
-									<p class="badge badge-success">Esito: POSITIVO</p>
+								<div class="column" id="storicoRiga">
+					
+									<h2><span class="badge badge-light">Prova di autovalutazione del ${s.data}</span>     <span class="badge badge-success">Esito: POSITIVO</span> 		     <a type="button" class="btn btn-info btn-sm" href="esito?data=${s.data}&&id_esito=${s.id}">Visualizza</a></h2>								
+									
 								</div>	
 								
 							</div>
-						</a>
+						
 					</li>
 				</c:if>
 				<c:if test="${s.risultato==false}">
 					<li class="list-group-item list-group-item-danger">
-						<a href="esito?data=${s.data}&&id_esito=${s.id}">
 							<div class="row">
 							
-								<div class="column">
-									<p class="badge badge-light">Prova di autovalutazione del ${s.data}</p>
-									<p class="badge badge-danger">Esito: NEGATIVO</p>
+								<div class="column" id="storicoRiga">
+									<h2><span class="badge badge-light">Prova di autovalutazione del ${s.data}</span>     <span class="badge badge-danger">Esito: NEGATIVO</span>      <a type="button" class="btn btn-info btn-sm" href="esito?data=${s.data}&&id_esito=${s.id}">Visualizza</a></h2>								
 								</div>	
 								
 							</div>
-						</a>
+						
 					</li>
 				</c:if>
 					

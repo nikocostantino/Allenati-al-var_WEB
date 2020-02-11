@@ -70,6 +70,7 @@ div.inline { float:left; }
 	margin-bottom: 3%;
 	margin-top: -2%;
 }
+
 .carousel-control-prev-icon{
   height: 100px;
   width: 100px;
@@ -96,6 +97,10 @@ div.inline { float:left; }
 
 span{
 	margin-bottom: 5%;
+}
+
+#storicoRiga{
+	margin-bottom: -4%;
 }
 
 #info{
