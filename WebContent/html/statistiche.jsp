@@ -12,6 +12,7 @@
 	<link href="../css/startmin.css" rel="stylesheet">
 	<link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="../css/home.css" type="text/css">
+	<link rel="stylesheet" href="../css/statistiche.css" type="text/css">
 	<script type="text/javascript" src="../js/home.js"></script>
 	
 <meta charset="UTF-8">

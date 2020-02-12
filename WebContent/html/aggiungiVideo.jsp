@@ -24,7 +24,7 @@
 
 <div class="jumbotron container">
 
-  			<h1><span class="badge badge-light">AGGIUNGI VIDEO</span></h1>	
+  			<h1><span class="badge badge-dark">AGGIUNGI VIDEO</span></h1>	
   			
   			<div class="row">
   			<div class="column left">

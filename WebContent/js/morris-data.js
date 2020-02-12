@@ -120,41 +120,83 @@ $(function() {
     	);  
     	
 
+    	Morris.Donut({
+	        element: 'morris-donut-chart2',
+	        data: [{
+	            label: "Corrette",
+	            value: 25
+	        },
+	        {
+	            label: "Sbagliate",
+	            value: 75
+	        }],
+	       
+	        colors: [
+	          '#4CC417',
+	          '#F62817'
+	        ],
+	        resize: true
+	    });	
+    	
     Morris.Bar({
-        element: 'morris-bar-chart',
+        element: 'morris-bar-chart1',
         data: [{
-            y: '2006',
-            a: 100,
-            b: 90
+            y: 'Rigore',
+            a: 100
         }, {
-            y: '2007',
-            a: 75,
-            b: 65
+            y: 'Rosso',
+            a: 75
         }, {
-            y: '2008',
-            a: 50,
-            b: 40
+            y: 'Giallo',
+            a: 50
         }, {
-            y: '2009',
-            a: 75,
-            b: 65
+            y: 'Fuorigioco',
+            a: 75
         }, {
-            y: '2010',
-            a: 50,
-            b: 40
+            y: 'Fallo di mano',
+            a: 50
         }, {
-            y: '2011',
-            a: 75,
-            b: 65
-        }, {
-            y: '2012',
-            a: 100,
-            b: 90
+            y: 'Goal',
+            a: 100
         }],
         xkey: 'y',
-        ykeys: ['a', 'b'],
-        labels: ['Series A', 'Series B'],
+        ykeys: ['a'],
+        labels: ['Video presenti'],
         hideHover: 'auto',
+        barColors: function (row, series, type) {
+        	console.log("--> "+row.label, series, type);
+        	if(row.label == "Rigore") return "#151B54";
+        	else if(row.label == "Rosso") return "#151B8D";
+        	else if(row.label == "Giallo") return "#2554C7";
+        	else if(row.label == "Fuorigioco") return "#2B60DE";
+        	else if(row.label == "Fallo di mano") return "#3090C7";
+        	else if(row.label == "Goal") return "#3BB9FF";
+        	},
+        resize: true
+    });
+    
+    Morris.Bar({
+        element: 'morris-bar-chart2',
+        data: [{
+            y: 'Normale',
+            a: 100
+        }, {
+            y: 'Difficile',
+            a: 75
+        }, {
+            y: 'Facile',
+            a: 50
+        }],
+        xkey: 'y',
+        ykeys: ['a'],
+        labels: ['Video presenti'],
+        hideHover: 'auto',
+        barColors: function (row, series, type) {
+        	console.log("--> "+row.label, series, type);
+        	if(row.label == "Normale") return "#FFFF00";
+        	else if(row.label == "Difficile") return "#FF0000";
+        	else if(row.label == "Facile") return "#00FF00";
+        	},
         resize: true
     });
 

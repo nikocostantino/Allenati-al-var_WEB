@@ -98,17 +98,7 @@ public class EsitoDAO_JDBC implements EsitoDAO{
 					esito.setData(result.getDate("data"));
 					esito.setRisultato(result.getBoolean("risultato"));
 				}
-				Video video = new Video();
-				video.setUrl(result.getString("url"));
-				video.setNome(result.getString("nome"));
-				video.setDescrizione(result.getString("descrizione"));
-				video.setDifficolta(result.getString("difficolta"));
-				video.setVisualizzazioni(result.getInt("visualizzazioni"));
-				video.setCategoria(new Categoria(result.getString("categoria")));
-				video.setCommenti(DBManager.getInstance().getCommentiDAO().findByPrimaryKey(result.getString("url")));
-				video.setRisposte(new OpzioniRisposte(result.getString("rispostaCorretta"), result.getString("rispostaErrata"), result.getBoolean("risposta_utente")));
 				
-				esito.getVideo().add(video);
 				
 				if(!storico.contains(esito)) {
 					storico.add(esito);

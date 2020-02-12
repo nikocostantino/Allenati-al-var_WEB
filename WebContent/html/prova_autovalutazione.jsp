@@ -19,6 +19,18 @@
 	<!-- REFRESH PAGINA OGNI 3 SECONDI <meta http-equiv="refresh" content="3"/> -->
 	<title>ALLENATI AL VAR - Prova Autovalutazione</title>
 
+<c:if test="${utente == null}">
+   			 <script language="javascript">
+       				 window.location.href = "gestorePagine?pagina=index"
+   			 </script>
+
+
+<a href="gestorePagine?pagina=index"></a>
+   			
+   			
+   </c:if>
+
+
 </head>
 
 <body>

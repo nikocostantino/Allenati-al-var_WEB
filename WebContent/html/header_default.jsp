@@ -51,6 +51,12 @@
 			    <a class="nav-link" href="gestorePagine?pagina=richiesteAmministratori">Richieste Amministratori</a>
   				</li>
 	</c:if>
+	
+	<c:if test="${amministratore == true}">
+				<li class="nav-item">
+			    <a class="nav-link" href="gestorePagine?pagina=statisticheVideo">Statistiche Video</a>
+  				</li>
+	</c:if>
     
   
     <li class="nav-item">
@@ -58,6 +64,17 @@
 	</li>
     </ul>
     <form class="form-inline my-2 my-lg-0" method="GET" action="risultatoRicerca">
+    
+   <c:if test="${utente == null}">
+   			 <script language="javascript">
+       				 window.location.href = "gestorePagine?pagina=index"
+   			 </script>
+
+
+<a href="gestorePagine?pagina=index"></a>
+   			
+   			
+   </c:if>
     <div class="alert my-2 my-sm-0" id="benvenuto">
 			<font color="white"><strong>${datiUtente}</strong></font>
 		</div>
