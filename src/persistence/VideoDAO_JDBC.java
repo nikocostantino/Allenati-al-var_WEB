@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import javafx.util.Pair;
 import model.Categoria;
 import model.Commenti;
 import model.OpzioniRisposte;
@@ -288,6 +289,190 @@ public class VideoDAO_JDBC implements VideoDAO{
 		
 		return visualizzazioni;
 	}
+
+	@Override
+	public int getVideoInseriti() {
+		Connection connection = null;
+		ArrayList<String> lista = new ArrayList<String>();
+
+		try {
+			connection = DBManager.getInstance().getConnection();
+			String query = "select * from video";
+			PreparedStatement statement = connection.prepareStatement(query);	
+			ResultSet result = statement.executeQuery();
+			while(result.next())
+			{
+				lista.add(result.getString("id"));
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		
+		return lista.size();		
+	}
+
+	@Override
+	public String getLinkVideoCorretto() {
+		Connection connection = null;
+		ArrayList<String> lista = new ArrayList<String>();
+
+		try {
+			connection = DBManager.getInstance().getConnection();
+			String query = "select * from esiti where risultato=true";
+			PreparedStatement statement = connection.prepareStatement(query);	
+			ResultSet result = statement.executeQuery();
+			while(result.next())
+			{
+				lista.add(result.getString("fk_video"));
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		
+		String massimo = lista.get(0);
+		int max = 0;
+		for(int i=0; i<lista.size(); i++)
+		{
+			int cont=0;
+			for(int j=0; j<lista.size(); j++)
+			{
+				if(lista.get(i) == lista.get(j))
+				{
+					cont++;
+				}
+			}
+			if(cont>max)
+			{
+				max=cont;
+				massimo = lista.get(i);
+			}
+		}
+		return massimo;
+	}
+
+	@Override
+	public String getLinkVideoSbagliato() {
+		Connection connection = null;
+		ArrayList<String> lista = new ArrayList<String>();
+
+		try {
+			connection = DBManager.getInstance().getConnection();
+			String query = "select * from esiti where risultato=false";
+			PreparedStatement statement = connection.prepareStatement(query);	
+			ResultSet result = statement.executeQuery();
+			while(result.next())
+			{
+				lista.add(result.getString("fk_video"));
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		
+		String massimo = lista.get(0);
+		int max = 0;
+		for(int i=0; i<lista.size(); i++)
+		{
+			int cont=0;
+			for(int j=0; j<lista.size(); j++)
+			{
+				if(lista.get(i) == lista.get(j))
+				{
+					cont++;
+				}
+			}
+			if(cont>max)
+			{
+				max=cont;
+				massimo = lista.get(i);
+			}
+		}
+		return massimo;
+	}
+
+	@Override
+	public String getNomeVideoCorretto(String linkVideoCorretto) {
+		Connection connection = null;
+		ArrayList<String> lista = new ArrayList<String>();
+
+		try {
+			connection = DBManager.getInstance().getConnection();
+			String query = "select * from video where url=?";
+			PreparedStatement statement = connection.prepareStatement(query);	
+			statement.setString(1, linkVideoCorretto);
+
+			ResultSet result = statement.executeQuery();
+			
+			while(result.next())
+			{
+				lista.add(result.getString("nome"));
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		
+		return lista.get(0);
+	}
+
+	@Override
+	public String getNomeVideoSbagliato(String linkVideoSbagliato) {
+		Connection connection = null;
+		ArrayList<String> lista = new ArrayList<String>();
+
+		try {
+			connection = DBManager.getInstance().getConnection();
+			String query = "select * from video where url=?";
+			PreparedStatement statement = connection.prepareStatement(query);	
+			statement.setString(1, linkVideoSbagliato);
+
+			ResultSet result = statement.executeQuery();
+			
+			while(result.next())
+			{
+				lista.add(result.getString("nome"));
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		
+		return lista.get(0);
+	}
+
+	
 
 
 }

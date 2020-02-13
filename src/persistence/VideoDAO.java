@@ -2,6 +2,7 @@ package persistence;
 
 import java.util.ArrayList;
 
+import javafx.util.Pair;
 import model.Video;
 
 public interface VideoDAO {
@@ -16,5 +17,10 @@ public interface VideoDAO {
 	public boolean esisteNomeModifica(String modificaNome, String url);
 	public String getRispostaCorretta(String url);
 	public int updateVisualizzazioni(String url);
+	public int getVideoInseriti();
+	public String getLinkVideoCorretto();
+	public String getLinkVideoSbagliato();
+	public String getNomeVideoCorretto(String linkVideoCorretto);
+	public String getNomeVideoSbagliato(String linkVideoSbagliato);
 
 }

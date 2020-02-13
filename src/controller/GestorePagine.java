@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import javafx.util.Pair;
 import model.Esito;
 import model.Video;
 import persistence.DBManager;
@@ -130,6 +131,32 @@ public class GestorePagine extends HttpServlet {
 				else
 					req.getSession().setAttribute("votoMenoFrequente", votoMenoFrequente);
 
+
+				RequestDispatcher rd = req.getRequestDispatcher(pagina+".jsp");
+				rd.forward(req, resp);
+			}
+			else if(pagina.equals("statisticheVideo"))
+			{
+				
+				int videoInseriti = DBManager.getInstance().getVideoInseriti();
+				int proveSuperate = DBManager.getInstance().getProveSuperate();					
+				int proveNonSuperate = DBManager.getInstance().getProveNonSuperate();
+				double votoMedio = DBManager.getInstance().getVotoMedio();
+				String linkVideoCorretto = DBManager.getInstance().getLinkVideoCorretto();
+				String linkVideoSbagliato = DBManager.getInstance().getLinkVideoSbagliato();
+				String nomeVideoCorretto = DBManager.getInstance().getNomeVideoCorretto(linkVideoCorretto);
+				String nomeVideoSbagliato = DBManager.getInstance().getNomeVideoSbagliato(linkVideoSbagliato);
+				
+				
+				req.getSession().setAttribute("videoInseriti", videoInseriti);
+				req.getSession().setAttribute("proveSuperate", proveSuperate);
+				req.getSession().setAttribute("proveNonSuperate", proveNonSuperate);
+				req.getSession().setAttribute("votoMedio", votoMedio);
+				req.getSession().setAttribute("paginaVideoCorretto", "pagina_video?url="+linkVideoCorretto);
+				req.getSession().setAttribute("videoCorretto", nomeVideoCorretto);
+
+				req.getSession().setAttribute("paginaVideoSbagliato", "pagina_video?url="+linkVideoSbagliato);
+				req.getSession().setAttribute("videoSbagliato", nomeVideoSbagliato);
 
 				RequestDispatcher rd = req.getRequestDispatcher(pagina+".jsp");
 				rd.forward(req, resp);

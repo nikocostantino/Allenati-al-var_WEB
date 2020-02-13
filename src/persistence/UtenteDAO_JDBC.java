@@ -541,4 +541,92 @@ public class UtenteDAO_JDBC implements UtenteDAO{
 		return massimo;	
 	}
 
+	@Override
+	public int getProveSuperate() {
+		Connection connection = null;
+		ArrayList<String> lista = new ArrayList<String>();
+
+		try {
+			connection = DBManager.getInstance().getConnection();
+			String query = "select * from voti";
+			PreparedStatement statement = connection.prepareStatement(query);	
+			ResultSet result = statement.executeQuery();
+			while(result.next())
+			{
+				if(result.getInt("voto")>5)
+					lista.add(result.getString("email"));
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		
+		return lista.size();		
+	}
+
+	@Override
+	public int getProveNonSuperate() {
+		Connection connection = null;
+		ArrayList<String> lista = new ArrayList<String>();
+
+		try {
+			connection = DBManager.getInstance().getConnection();
+			String query = "select * from voti";
+			PreparedStatement statement = connection.prepareStatement(query);	
+			ResultSet result = statement.executeQuery();
+			while(result.next())
+			{
+				if(result.getInt("voto")<6)
+					lista.add(result.getString("email"));
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		
+		return lista.size();
+	}
+
+	@Override
+	public double getVotoMedio() {
+		Connection connection = null;
+		double somma = 0;
+		double cont = 0;
+		try {
+			connection = DBManager.getInstance().getConnection();
+			String query = "select * from voti";
+			PreparedStatement statement = connection.prepareStatement(query);	
+			ResultSet result = statement.executeQuery();
+			while(result.next())
+			{
+					somma += result.getInt("voto");
+					cont++;
+			}
+			
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		double media= somma/cont;
+		double temp = Math.pow(10,2);
+		return Math.rint(media * temp) / temp;
+	}
+
 }

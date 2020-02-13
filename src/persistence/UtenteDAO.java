@@ -27,4 +27,7 @@ public interface UtenteDAO {
 	public double getMedia(String email);
 	public int getVotoPiuFrequente(String email);
 	public int getVotoMenoFrequente(String email);
+	public int getProveSuperate();
+	public int getProveNonSuperate();
+	public double getVotoMedio();
 }

@@ -119,32 +119,33 @@
 			    <div class="col-sm">
 							<div class="alert alert-dark" role="alert">
 							  <h4 class="alert-heading" align="center">Video inseriti</h4>
-								<h1 align="center">${proveEffettuate}</h1>
+								<h1 align="center">${videoInseriti}</h1>
 							  <hr>
 							  <p class="mb-0">Quanti video sono presenti nel sistema.</p>
 							</div>			   
 				</div>
+				
 			    <div class="col-sm">
 			      <div class="alert alert-success" role="alert">
 							  <h4 class="alert-heading" align="center">Video più indovinato</h4>
-								<h4 align="center">RIGORE DE LIGT JUVENTUS - NAPOLI</h4>
+								<h5 align="center"><a href="${paginaVideoCorretto}" id="collVerde">${videoCorretto}</a></h5>
 							  <hr>
-							  <p class="mb-0" align="center">Clicca qui per visualizzarlo</p>
+							  <p class="mb-0">Il video che ha ricevuto più risposte corrette tra tutte le prove</p>
 							  
 							</div>
 			    </div>
 			    <div class="col-sm">
 			<div class="alert alert-danger" role="alert">
 							  <h4 class="alert-heading" align="center">Video più sbagliato</h4>
-								<h4 align="center">RIGORE DE LIGT JUVENTUS - NAPOLI</h4>
+								<h5 align="center"><a href="${paginaVideoSbagliato}" id="collRosso">${videoSbagliato}</a></h5>
 							  <hr>
-							  <p class="mb-0" align="center">Clicca qui per visualizzarlo</p>
+							  <p class="mb-0">Il video che ha ricevuto più risposte errate tra tutte le prove</p>
 							</div>
 			    </div>
 			    <div class="col-sm">
 			<div class="alert alert-success" role="alert">
 							  <h4 class="alert-heading" align="center">Prove Superate</h4>
-								<h1 align="center">${media}</h1>
+								<h1 align="center">${proveSuperate}</h1>
 							  <hr>
 							  <p class="mb-0">Numero di prove superate da tutti gli utenti nel sistema.</p>
 							</div>
@@ -152,7 +153,7 @@
 			    <div class="col-sm">
 			<div class="alert alert-danger" role="alert">
 							  <h4 class="alert-heading" align="center">Prove non superate</h4>
-								<h1 align="center">${votoPiuFrequente}</h1>
+								<h1 align="center">${proveNonSuperate}</h1>
 							  <hr>
 							  <p class="mb-0">Numero di prove non superate da tutti gli utenti nel sistema.</p>
 							</div>
@@ -160,7 +161,7 @@
 			    <div class="col-sm">
 			<div class="alert alert-info" role="alert">
 							  <h4 class="alert-heading" align="center">Voto medio</h4>
-								<h1 align="center">${votoMenoFrequente}</h1>
+								<h1 align="center">${votoMedio}</h1>
 							  <hr>
 							  <p class="mb-0">Voto medio risultante da tutte le prove svolte dagli utenti.</p>
 							</div>

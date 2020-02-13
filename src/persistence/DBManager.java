@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.apache.jasper.tagplugins.jstl.core.ForEach;
 
+import javafx.util.Pair;
 import model.Categoria;
 import model.Commenti;
 import model.Esito;
@@ -369,6 +370,45 @@ public class DBManager {
 
 	public int getVotoMenoFrequente(String email) {
 		return getUtenteDAO().getVotoMenoFrequente(email);
+	}
+
+
+	public int getVideoInseriti() {
+		return getVideoDAO().getVideoInseriti();
+	}
+
+
+	public int getProveSuperate() {
+		return getUtenteDAO().getProveSuperate();
+	}
+	
+	public int getProveNonSuperate() {
+		return getUtenteDAO().getProveNonSuperate();
+	}
+
+
+	public double getVotoMedio() {
+		return getUtenteDAO().getVotoMedio();
+	}
+
+
+	public String getLinkVideoCorretto() {
+		return getVideoDAO().getLinkVideoCorretto();
+	}
+
+
+	public String getLinkVideoSbagliato() {
+		return getVideoDAO().getLinkVideoSbagliato();
+	}
+
+
+	public String getNomeVideoCorretto(String linkVideoCorretto) {
+		return getVideoDAO().getNomeVideoCorretto(linkVideoCorretto);
+	}
+
+
+	public String getNomeVideoSbagliato(String linkVideoSbagliato) {
+		return getVideoDAO().getNomeVideoSbagliato(linkVideoSbagliato);
 	}
 
 
