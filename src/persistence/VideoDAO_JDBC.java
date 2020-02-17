@@ -472,6 +472,58 @@ public class VideoDAO_JDBC implements VideoDAO{
 		return lista.get(0);
 	}
 
+	@Override
+	public ArrayList<String> getVideoCategorie() {
+		Connection connection = null;
+		try {
+			connection = DBManager.getInstance().getConnection();
+
+			String insert = "select categoria from video";
+
+			PreparedStatement statement = connection.prepareStatement(insert);
+			ResultSet result = statement.executeQuery();
+			ArrayList<String> a=new ArrayList<String>();
+			while(result.next()) {
+				a.add((String) result.getString("categoria"));
+			}
+			return a;
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
+
+	@Override
+	public ArrayList<String> getVideoDifficolta() {
+		Connection connection = null;
+		try {
+			connection = DBManager.getInstance().getConnection();
+
+			String insert = "select difficolta from video";
+
+			PreparedStatement statement = connection.prepareStatement(insert);
+			ResultSet result = statement.executeQuery();
+			ArrayList<String> a=new ArrayList<String>();
+			while(result.next()) {
+				a.add((String) result.getString("difficolta"));
+			}
+			return a;
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
+
 	
 
 

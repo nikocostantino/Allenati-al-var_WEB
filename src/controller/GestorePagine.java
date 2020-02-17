@@ -48,7 +48,8 @@ public class GestorePagine extends HttpServlet {
 				req.getSession().setAttribute("email", DBManager.getInstance().getUtenteCorrente().getEmail());
 				req.getSession().setAttribute("password", DBManager.getInstance().getUtenteCorrente().getPassword());
 				
-					req.getSession().setAttribute("amministratore", DBManager.getInstance().getUtenteCorrente().getAmministratore());
+				req.getSession().setAttribute("amministratore", DBManager.getInstance().getUtenteCorrente().getAmministratore());
+				req.getSession().setAttribute("rating", DBManager.getInstance().getRating(DBManager.getInstance().getUtenteCorrente().getEmail()));
 				
 					
 				if(req.getParameter("salvaModifiche")!=null)

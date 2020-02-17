@@ -139,4 +139,30 @@ public class VotoDAO_JDBS implements VotoDAO {
 		}		
 	}
 
+	@Override
+	public ArrayList<Boolean> getVoti() {
+		Connection connection = null;
+		try {
+			connection = DBManager.getInstance().getConnection();
+
+			String insert = "select risposta_utente from esiti";
+
+			PreparedStatement statement = connection.prepareStatement(insert);
+			ResultSet result = statement.executeQuery();
+			ArrayList<Boolean> a=new ArrayList<Boolean>();
+			while(result.next()) {
+				a.add((boolean) result.getBoolean("risposta_utente"));
+			}
+			return a;
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+	}
+
 }

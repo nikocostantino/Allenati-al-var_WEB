@@ -16,5 +16,7 @@ public interface VotoDAO {
 
 	public void modificaEmail(String email, String email2);
 
+	public ArrayList<Boolean> getVoti();
+
 
 }

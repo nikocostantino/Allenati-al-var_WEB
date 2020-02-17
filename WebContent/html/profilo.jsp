@@ -14,7 +14,12 @@
 	
 	<script type="text/javascript" src="../js/home.js"></script>
 	
-	
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style>
+	.checked {
+	  color: orange;
+	}
+	</style>
 	
 
 	<meta charset="UTF-8">
@@ -51,6 +56,45 @@
                     
                     <div class="col-md-6">
                         <div class="profile-head">
+                        			<c:if test="${rating > 0}">
+                        				<span class="fa fa-star checked" id="stella1"></span>
+                                    </c:if>
+                                    <c:if test="${rating <= 0}">
+                        				<span class="fa fa-star" id="stella1"></span>
+                                    </c:if>
+                                    
+                                    <c:if test="${rating > 1}">
+                        				<span class="fa fa-star checked" id="stella2"></span>
+                                    </c:if>
+                                    <c:if test="${rating <= 1}">
+                        				<span class="fa fa-star" id="stella2"></span>
+                                    </c:if>
+                                    
+                                    <c:if test="${rating > 2}">
+                        				<span class="fa fa-star checked" id="stella3"></span>
+                                    </c:if>
+                                    <c:if test="${rating <= 2}">
+                        				<span class="fa fa-star" id="stella3"></span>
+                                    </c:if>
+                                    
+                                    <c:if test="${rating > 3}">
+                        				<span class="fa fa-star checked" id="stella4"></span>
+                                    </c:if>
+                                    <c:if test="${rating <= 3}">
+                        				<span class="fa fa-star" id="stella4"></span>
+                                    </c:if>
+                                    
+                                    <c:if test="${rating > 4}">
+                        				<span class="fa fa-star checked" id="stella5"></span>
+                                    </c:if>
+                                    <c:if test="${rating <= 4}">
+                        				<span class="fa fa-star" id="stella5"></span>
+                                    </c:if>
+									
+                        
+                        
+                        
+                        
                                     <h5>${nome} ${cognome}</h5>
                                     <h6>
                                     <c:if test="${amministratore == true}">

@@ -106,4 +106,5 @@ public class Utente {
 	public void aggiornaRecenti(Video videoChiesto) {
 		DBManager.getInstance().getCategoriaDAO().save(videoChiesto);
 	}
+
 }

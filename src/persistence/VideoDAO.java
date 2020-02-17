@@ -22,5 +22,7 @@ public interface VideoDAO {
 	public String getLinkVideoSbagliato();
 	public String getNomeVideoCorretto(String linkVideoCorretto);
 	public String getNomeVideoSbagliato(String linkVideoSbagliato);
+	public ArrayList<String> getVideoCategorie();
+	public ArrayList<String> getVideoDifficolta();
 
 }

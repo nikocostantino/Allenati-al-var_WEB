@@ -412,6 +412,26 @@ public class DBManager {
 	}
 
 
+	public ArrayList<Boolean> dammiVoti() {
+		return getVotoDAO().getVoti();
+	}
+
+
+	public ArrayList<String> dammiVideoCategorie() {
+		return getVideoDAO().getVideoCategorie();
+	}
+
+
+	public ArrayList<String> dammiVideoDifficolta() {
+		return getVideoDAO().getVideoDifficolta();
+	}
+
+
+	public int getRating(String email) {
+		return (int) ((getMedia(email)/2)+0.5);
+	}
+
+
 	
 	
 }

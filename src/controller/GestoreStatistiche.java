@@ -17,6 +17,10 @@ public class GestoreStatistiche extends HttpServlet{
 		String voti=req.getParameter("voti");
 		String ultimi10Voti=req.getParameter("ultimi10Voti");
 		String email = (String) req.getSession().getAttribute("email");
+		String votiTotali=req.getParameter("votiTotali");
+		String videoCategorie=req.getParameter("videoCategorie");
+		String videoDifficolta=req.getParameter("videoDifficolta");
+
 		if(ultimi10Voti!=null)
 		{
 			ArrayList<Integer> listaVoti10;
@@ -79,6 +83,83 @@ public class GestoreStatistiche extends HttpServlet{
 			}
 			resp.getOutputStream().println(totale);
 			
+		}
+		if(votiTotali!=null)
+		{
+			
+			ArrayList<Boolean> listaVoti = DBManager.getInstance().dammiVoti();
+			int verde = 0;
+			int rosso = 0;
+			
+			
+						
+			String totale="";
+			for(int i=0; i<listaVoti.size(); i++)
+			{
+				if(listaVoti.get(i)==true)
+					verde++;
+				else
+					rosso++;
+			}
+			verde = (verde*100)/listaVoti.size();
+			rosso = 100-verde;
+			totale = totale + verde + " " + rosso + " ";
+			resp.getOutputStream().println(totale);
+			
+		}
+		if(videoCategorie!=null)
+		{
+			ArrayList<String> listaCategorie = DBManager.getInstance().dammiVideoCategorie();
+			int rigore = 0;
+			int rosso = 0;
+			int giallo = 0;
+			int fuorigioco = 0;
+			int fallo_di_mano = 0;
+			int goal = 0;
+			
+			String totale="";
+			for(int i=0; i<listaCategorie.size(); i++)
+			{
+				if(listaCategorie.get(i).equals("rigore"))
+					rigore++;
+				else if(listaCategorie.get(i).equals("rosso"))
+					rosso++;
+				else if(listaCategorie.get(i).equals("giallo"))
+					giallo++;
+				else if(listaCategorie.get(i).equals("fuorigioco"))
+					fuorigioco++;
+				else if(listaCategorie.get(i).equals("fallo di mano"))
+					fallo_di_mano++;
+				else if(listaCategorie.get(i).equals("goal"))
+					goal++;
+				
+			}
+			totale = totale + rigore + " " + rosso + " " + giallo + " " + fuorigioco + " " + fallo_di_mano + " " + goal + " ";
+
+			resp.getOutputStream().println(totale);
+		}
+		if(videoDifficolta!=null)
+		{
+			ArrayList<String> listaDifficolta = DBManager.getInstance().dammiVideoDifficolta();
+			int normale = 0;
+			int difficile = 0;
+			int facile = 0;
+			
+			
+			String totale="";
+			for(int i=0; i<listaDifficolta.size(); i++)
+			{
+				if(listaDifficolta.get(i).equals("normale"))
+					normale++;
+				else if(listaDifficolta.get(i).equals("difficile"))
+					difficile++;
+				else if(listaDifficolta.get(i).equals("facile"))
+					facile++;
+				
+			}
+			totale = totale + normale + " " + difficile + " " + facile + " ";
+
+			resp.getOutputStream().println(totale);
 		}
 	}
 }
