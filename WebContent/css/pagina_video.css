@@ -112,7 +112,9 @@ iframe{
   	white-space: pre-line;
   	 
 }
-
+.three{
+	margin-top: -6%;
+}
 #data{
 	font-size:14px;
 }

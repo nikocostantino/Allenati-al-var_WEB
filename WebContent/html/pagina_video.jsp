@@ -128,7 +128,7 @@
 					<br>
 					<p class="badge badge-light column col-sm-12" id="categoria"> Categoria: ${categoria} </p>
 					<br>
-					<p class="badge badge-light column col-sm-12"id="difficolta"> ${difficolta} </p>
+					<p class="badge badge-light column col-sm-12"id="difficolta"> Difficolt&agrave;: ${difficolta} </p>
 					<br>
 							
 				</div>
