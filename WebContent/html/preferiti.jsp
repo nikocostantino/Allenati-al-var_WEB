@@ -30,13 +30,13 @@
     			    	<div class="row">
 	    			    	<c:forEach items="${video_preferiti}" var="v">
 	    			    		<a href="pagina_video?url=${v.url}" class="list-group-item list-group-item-action">
-		    			    	<div class="column left">
+		    			    	<div class="column col-sm-6">
 		                            	
 										<iframe class="embed-responsive-item" src="${v.url}" allowfullscreen></iframe>
 									
 										
 								</div>
-								<div class="column right">
+								<div class="column col-sm-6">
 		    			    		<p>${v.nome}</p>
 		    			    		<p>${v.categoria[0].nome}</p>
 		    			    		<p>${v.difficolta}</p>

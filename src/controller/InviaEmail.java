@@ -27,7 +27,7 @@ public class InviaEmail {
 	public void inviaMail(String destinatario) {
 
         final String username = "allenati-al-var@libero.it";
-        final String password = "gattogatto";
+        final String password = "allenatironaldo";
 
         Properties prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.libero.it");
@@ -68,7 +68,7 @@ public class InviaEmail {
 	public void inviaMailNuovaPassword(String destinatario) {
 
         final String username = "allenati-al-var@libero.it";
-        final String password = "gattogatto";
+        final String password = "allenatironaldo";
 
         Properties prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.libero.it");
@@ -109,7 +109,7 @@ public class InviaEmail {
 	public void inviaMailApprovazioneAmministratore(String destinatario, String risposta) {
 
         final String username = "allenati-al-var@libero.it";
-        final String password = "gattogatto";
+        final String password = "allenatironaldo";
 
         Properties prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.libero.it");
@@ -145,8 +145,8 @@ public class InviaEmail {
             else if(risposta=="no")
             {
             	message.setText("Gentile " + DBManager.getInstance().getNomeUtentePerEmail(destinatario) +
-                        "\n\n la sua richiesta per poter diventare un amministratore non è stata approvata." +
-                        "\n La invitiamo a ritentare in futuro." +
+                        "\n\n la sua richiesta per poter diventare un amministratore non è stata approvata" +
+                        "\n poiché la sua valutazione è risultata insufficiente." +
 
                "\n\n Cordiali saluti," +
                "\n Il team di Allenati al VAR");

@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.mail.MessagingException;
 import javax.servlet.RequestDispatcher;
@@ -10,9 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import javafx.util.Pair;
 import model.Esito;
 import model.Video;
+import model.Utente;
 import persistence.DBManager;
 
 public class GestorePagine extends HttpServlet {
@@ -21,9 +24,18 @@ public class GestorePagine extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		String pagina = req.getParameter("pagina");
+		String logout = req.getParameter("logout");
 		if(pagina!=null)
 		{
-			if(pagina.equals("preferiti")) {
+			if(logout!=null)
+			{
+					System.out.println("logout entro");
+					DBManager.getInstance().setNullUtenteCorrente();
+					req.getSession().setAttribute("utente", null);
+					RequestDispatcher rd = req.getRequestDispatcher(pagina+".jsp");
+					rd.forward(req, resp);
+			}
+			else if(pagina.equals("preferiti")) {
 				ArrayList<Video> preferiti = DBManager.getInstance().getPreferiti();
 				req.getSession().setAttribute("video_preferiti",preferiti);
 				RequestDispatcher rd = req.getRequestDispatcher(pagina+".jsp");
@@ -41,6 +53,17 @@ public class GestorePagine extends HttpServlet {
 				RequestDispatcher rd = req.getRequestDispatcher(pagina+".jsp");
 				rd.forward(req, resp);
 			}
+			else if(pagina.contentEquals("topTen"))
+			{
+				List <Utente> l=DBManager.getInstance().getTopTen();
+				req.getSession().setAttribute("topTen", l);
+				req.getSession().setAttribute("size", l.size());
+				if(DBManager.getInstance().getUtenteCorrente()!=null)
+					req.getSession().setAttribute("utenteCorrente", DBManager.getInstance().getUtenteCorrente().getEmail());
+				RequestDispatcher rd = req.getRequestDispatcher(pagina+".jsp");
+				rd.forward(req, resp);
+			}
+			
 			else if(pagina.contentEquals("profilo"))
 			{
 				req.getSession().setAttribute("nome", DBManager.getInstance().getUtenteCorrente().getNome());

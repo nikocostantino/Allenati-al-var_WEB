@@ -35,8 +35,8 @@
 						
 							<div class="row" id="storicoRiga">
 							
-								<div class="column" >
-									<h2><span class="badge badge-light">Prova di autovalutazione del ${s.data}</span></h2>									
+								<div class="col-sm" >
+									<h2><span class="badge badge-light">Prova del ${s.data}</span></h2>									
 								</div>	
 								<div class="col-sm" >
 									<h2><span class="badge badge-success">Esito: POSITIVO</span></h2>
@@ -53,8 +53,8 @@
 					<li class="list-group-item list-group-item-danger">
 							<div class="row" id="storicoRiga">
 							
-								<div class="column" >
-									<h2><span class="badge badge-light">Prova di autovalutazione del ${s.data}</span></h2>									
+								<div class="col-sm" >
+									<h2><span class="badge badge-light">Prova del ${s.data}</span></h2>									
 								</div>	
 								<div class="col-sm" >
 									<h2><span class="badge badge-danger">Esito: NEGATIVO</span></h2>

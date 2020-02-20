@@ -56,6 +56,12 @@ button[type=button]{
 	margin-bottom:4%;
 }
 
+
+iframe{
+	
+	height: 255px;
+}
+
 input, textarea {
   	background-color: #f6f6f6;
   	border: none;

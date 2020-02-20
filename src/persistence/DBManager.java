@@ -130,7 +130,7 @@ public class DBManager {
 	}
 	
 	public List<Utente> getUtenti() {
-		return utenti;
+		return getUtenteDAO().getTuttiUtenti();
 	}
 
 	public void eliminaVideo(String url)
@@ -430,6 +430,48 @@ public class DBManager {
 	public int getRating(String email) {
 		return (int) ((getMedia(email)/2)+0.5);
 	}
+
+
+	public List<Utente> getTopTen() {
+		
+		List<Utente> tuttiUtenti=DBManager.getInstance().getUtenti();
+	  
+
+		List<Utente> tuttiUtentiConMedia = DBManager.getInstance().calcolaMedie(tuttiUtenti);
+		return DBManager.getInstance().ordina(tuttiUtentiConMedia);
+	}
+
+
+	private List<Utente> ordina(List<Utente> tuttiUtenti) {
+	   
+		    for(int i = 0; i < tuttiUtenti.size()-1; i++) {
+		        int minimo = i; //Partiamo dall' i-esimo elemento
+		        for(int j = i+1; j < tuttiUtenti.size(); j++) {
+		            if(tuttiUtenti.get(minimo).getMedia() < tuttiUtenti.get(j).getMedia()) {
+		                minimo = j;
+		            }
+		        }
+		        if(minimo!=i) { 
+		            Utente k = tuttiUtenti.get(minimo);
+		            tuttiUtenti.set(minimo,tuttiUtenti.get(i));
+		            tuttiUtenti.set(i,k);
+		        }
+		    }
+		return tuttiUtenti;
+	}
+
+
+	private List<Utente> calcolaMedie(List<Utente> tuttiUtenti) {
+		for(int i=0; i<tuttiUtenti.size(); i++)
+			tuttiUtenti.get(i).setMedia(DBManager.getInstance().getMedia(tuttiUtenti.get(i).getEmail()));
+		return tuttiUtenti;
+	}
+
+
+	public void setNullUtenteCorrente() {
+			utenteCorrente=null;
+	}
+	
 
 
 	

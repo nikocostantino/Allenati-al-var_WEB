@@ -13,11 +13,13 @@ public class Utente {
 	private ArrayList<Video> video_recenti;
 	private ArrayList<Esito> storico;
 	private Boolean amministratore;
+	private double media;
 
 	public Utente() {
 		this.video_preferiti = new ArrayList<Video>();
 		this.storico = new ArrayList<Esito>();
 		this.video_recenti = new ArrayList<Video>();
+		media = 0;
 	}
 	
 	public Utente(String nome, String cognome) {
@@ -105,6 +107,14 @@ public class Utente {
 
 	public void aggiornaRecenti(Video videoChiesto) {
 		DBManager.getInstance().getCategoriaDAO().save(videoChiesto);
+	}
+
+	public double getMedia() {
+		return media;
+	}
+
+	public void setMedia(double media) {
+		this.media = media;
 	}
 
 }

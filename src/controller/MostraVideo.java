@@ -117,7 +117,7 @@ public class MostraVideo extends HttpServlet{
 				
 				JSONObject jsonCompleto = new JSONObject();
 				String testo = new String(json.getString("testo").getBytes(), "UTF-8");
-				jsonCompleto.append("testo", testo);
+				jsonCompleto.append("testo", json.getString("testo"));
 				jsonCompleto.append("url", json.get("url_video"));
 				jsonCompleto.append("nome", DBManager.getInstance().getUtenteCorrente().getNome());
 				jsonCompleto.append("cognome", DBManager.getInstance().getUtenteCorrente().getCognome());

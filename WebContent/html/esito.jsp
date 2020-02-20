@@ -39,14 +39,14 @@
 				</c:if>
 					<div class="row">
 					
-						<div class="column left">
+						<div class="column col-sm-6">
 				    	
 							<iframe class="embed-responsive-item" src="${v.url}"></iframe>
 							
 							
 						</div>
 						
-						<div class="column right">
+						<div class="column col-sm-6">
 							<p>${v.nome}</p>
 							<p>${v.categoria[0].nome}</p>
 							<p>${v.difficolta}</p>

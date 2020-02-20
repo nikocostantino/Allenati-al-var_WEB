@@ -27,7 +27,7 @@
   			<h1><span class="badge badge-light">MODIFICA VIDEO</span></h1>	
   			
   			<div class="row">
-  			<div class="column left">
+  			<div class="col-sm">
   			
   			
   			<form id="formContent">
@@ -43,13 +43,22 @@
 				
 			<div class="fadeIn second" id="categoria" >
 				<select id="cat" name="categoria" required>
-					<option value="" disabled selected>${categoria}</option>
-					<option value="rigore">rigore</option>
-					<option value="rosso">rosso</option>
-					<option value="giallo">giallo</option>
-					<option value="fuorigioco">fuorigioco</option>					
-					<option value="fallo di mano">fallo di mano</option>
-				
+					<option value="${categoria}" selected>${categoria}</option>
+					<c:if test="${categoria != 'rigore'}">
+							<option value="rigore">rigore</option>
+                    </c:if>
+					<c:if test="${categoria != 'rosso'}">
+						<option value="rosso">rosso</option>
+					</c:if>
+					<c:if test="${categoria != 'giallo'}">
+						<option value="giallo">giallo</option>
+					</c:if>
+					<c:if test="${categoria != 'fuorigioco'}">
+						<option value="fuorigioco">fuorigioco</option>					
+					</c:if>
+					<c:if test="${categoria != 'fallo di mano'}">
+						<option value="fallo di mano">fallo di mano</option>
+					</c:if>
 				</select>
 			</div>	
 			<div id="controlloCategoria" class="inactive">
@@ -59,10 +68,16 @@
 			
 			<div class="fadeIn second" id="grado di difficoltà" >
 				<select id="sel" name="grado di difficoltà" required>
-					<option value="" disabled selected>${difficolta}</option>
-					<option value="normale">normale</option>
-					<option value="difficile">difficile</option>
-					<option value="facile">facile</option>						
+					<option value="${difficolta}" selected>${difficolta}</option>
+					<c:if test="${difficolta != 'normale'}">
+						<option value="normale">normale</option>
+					</c:if>
+					<c:if test="${difficolta != 'difficile'}">
+						<option value="difficile">difficile</option>
+					</c:if>
+					<c:if test="${difficolta != 'facile'}">
+						<option value="facile">facile</option>						
+					</c:if>
 				</select>
 			</div>
 			<div id="controlloDifficolta" class="inactive">
@@ -102,7 +117,7 @@
 	      	
 	    	</form>
 	    </div>
-	    <div id="anteprimaVideo" class="column right">
+	    <div id="anteprimaVideo" class="col-sm">
 				<iframe width='90%' id='video' src='${url}' height='56%'></iframe>	
 	    	</div>
 			</div> 

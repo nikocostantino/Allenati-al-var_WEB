@@ -27,7 +27,7 @@
   			<h1><span class="badge badge-dark">AGGIUNGI VIDEO</span></h1>	
   			
   			<div class="row">
-  			<div class="column left">
+  			<div class="col-sm">
   			
   			
   			<form id="formContent">
@@ -111,7 +111,8 @@
 	      	
 	    	</form>
 	    </div>
-	    <div id="anteprimaVideo" class="column right">
+	    
+	    <div id="anteprimaVideo" class="col-sm">
 
 	    	</div>
 			</div> 

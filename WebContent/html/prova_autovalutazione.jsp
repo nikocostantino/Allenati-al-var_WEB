@@ -10,6 +10,7 @@
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="../css/prova_autovalutazione.css" type="text/css">
+	
 	<script type="text/javascript" src="../js/prova_autovalutazione.js"></script>
 	
 	<script src="https://www.youtube.com/iframe_api" ></script >
@@ -36,40 +37,38 @@
 <body>
 
 	<div id="jumbo_top" class="jumbotron">
-		<div class="row">
-			<div class="column col-sm-11">
+		<div class="row" align="center">
+			<div class="column col-sm-8">
 				<h1 style="text-align: center;" > <span class="badge badge-dark" id="text_prova"> PROVA DI AUTOVALUTAZIONE </span></h1>
 			</div>
-			<div class="column col-sm-1">
-				<a class="btn btn-danger" href="prova_autovalutazione?termina=true" id="buttonTermina">TERMINA</a>
+			<div class="column col-sm-4">
+				<a class="btn btn-danger" style="text-align: center;" href="prova_autovalutazione?termina=true" id="buttonTermina">TERMINA</a>
 			</div>
 		</div>
 	</div>
 	
 	<c:set var = "videoProva" scope = "session" value = "${videoProva}"/>
 	<div id="cornice" class="jumbotron">
+		<div class="row">
 		
-		<div id="colonnaSx">
+		<div class="column col-sm-8" align="center">
 			
-			<div id="rigaVideo">
 				<!--  <iframe id="video" class="embed-responsive-item" src="${videoProva[0].url += "?autoplay=1"}"></iframe> -->
 	
 				<div id="video-placeholder"></div>
 				<div id="controls"> </div>
 				
-				<p> Video ${indice} di ${dimensione} </p>
-				
-			</div>
-			
+				<h2> Video ${indice} di ${dimensione} </h2>
+						
 		</div>
-		<div align="center" id="colonnaDx">
+		<div class="column col-sm-4" align="center">
 			<div align="center" id="rigaTimer">	
 				
 				<span class="badge badge-success" id="timer"></span>
-				
-			
 			</div>
 			<div align="center" id="rigaRisposte">
+				<h3 class="p-3 mb-2 text-primary">Seleziona la risposta corretta</h3>
+			
 				<c:if test="${ordineRisposte==0}">
 					<a class="btn btn-light" href="prova_autovalutazione?risposta=${videoProva[0].risposte.opzioneCorretta}" id="rispostaCorretta"> ${videoProva[0].risposte.opzioneCorretta} </a>
 					<a class="btn btn-light" href="prova_autovalutazione?risposta=${videoProva[0].risposte.opzioneErrata}" id="rispostaErrata"> ${videoProva[0].risposte.opzioneErrata} </a>	
@@ -83,6 +82,7 @@
 			</div>
 		</div>
 	</div>
+	</div>
 	
 
 	<script>
@@ -92,7 +92,6 @@
 	function onYouTubeIframeAPIReady() {
 	    player = new YT.Player('video-placeholder', {
 	    	autoplay: 1,
-	       
 	        videoId: '${videoProva[0].id}',
 	        playerVars: {
 	            color: 'white',

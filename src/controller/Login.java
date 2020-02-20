@@ -72,7 +72,9 @@ public class Login extends HttpServlet{
 				req.getSession().setAttribute("registrazioneEffettuata", "corretto");
 				Utente user = new Utente(nome,cognome,email,password,"off");
 				DBManager.getInstance().inserisciUtente(user);
-				DBManager.getInstance().inserisciRichiesta(email);
+				if(amministratore!="off")
+					DBManager.getInstance().inserisciRichiesta(email);
+				
 				req.setAttribute("utenteRegistrato", user);
 				
 				req.getSession().removeAttribute("passwordSbagliata");

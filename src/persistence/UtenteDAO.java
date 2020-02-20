@@ -1,6 +1,7 @@
 package persistence;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.Utente;
 
@@ -30,4 +31,5 @@ public interface UtenteDAO {
 	public int getProveSuperate();
 	public int getProveNonSuperate();
 	public double getVotoMedio();
+	public List<Utente> getTuttiUtenti();
 }

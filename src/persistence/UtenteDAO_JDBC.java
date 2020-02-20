@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 import model.Categoria;
 import model.OpzioniRisposte;
@@ -436,6 +437,8 @@ public class UtenteDAO_JDBC implements UtenteDAO{
 				throw new RuntimeException(e.getMessage());
 			}
 		}
+		if(somma==0)
+			return 0;
 		double media= somma/cont;
 		double temp = Math.pow(10,2);
 		return Math.rint(media * temp) / temp;
@@ -627,6 +630,37 @@ public class UtenteDAO_JDBC implements UtenteDAO{
 		double media= somma/cont;
 		double temp = Math.pow(10,2);
 		return Math.rint(media * temp) / temp;
+	}
+
+	@Override
+	public List<Utente> getTuttiUtenti() {
+		Connection connection = null;
+		List<Utente> utenti = new ArrayList<Utente>();
+		try {
+			connection = DBManager.getInstance().getConnection();
+			PreparedStatement statement;
+			String query = "select * from utenti";
+			statement = connection.prepareStatement(query);
+			
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				Utente utente = new Utente();
+				utente.setNome(result.getString("nome"));
+				utente.setCognome(result.getString("cognome"));
+				utente.setEmail(result.getString("email"));
+				utenti.add(utente);
+			
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		} finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}	
+		return utenti;
 	}
 
 }

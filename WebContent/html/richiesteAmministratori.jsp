@@ -40,9 +40,13 @@
 								<div class="row">
 							
 								<div class="col-sm">
-									<h2><span class="badge badge-light">Richiesta amministratore da ${s}</span></h2>
+									<h2><span class="badge badge-light">Richiesta amministratore da:</span></h2>
 
-								</div>	
+								</div>
+								<div class="col-sm">
+									<h2><span class="badge badge-light">${s}</span></h2>
+
+								</div>		
 								<div class="col-sm">
 								<div id="ricAmm" align="right">
 								<a type="button" class="btn btn-success btn-sm" href="javascript:accetta('<c:out value="${s}"/>')">Approva</a>

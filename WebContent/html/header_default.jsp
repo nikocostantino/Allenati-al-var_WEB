@@ -3,7 +3,16 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
+ <c:if test="${utente == null}">
+   			 <script language="javascript">
+       				 window.location.href = "gestorePagine?pagina=index"
+   			 </script>
 
+
+<a href="gestorePagine?pagina=index"></a>
+   			
+   			
+   </c:if>
 
 
 <div id="headerHome" class="container" >
@@ -33,7 +42,7 @@
 					<a  class="dropdown-item" href="gestorePagine?pagina=preferiti">Preferiti</a>
 					<a  class="dropdown-item" href="gestorePagine?pagina=storico">Storico</a>		
 					<div class="dropdown-divider"></div>		
-					<a class="dropdown-item" href="gestorePagine?pagina=index">Logout</a>				
+					<a class="dropdown-item" href="gestorePagine?pagina=index&&logout=true">Logout</a>				
 				</div>
 		</li>
 		<li class="nav-item">
@@ -57,24 +66,18 @@
 			    <a class="nav-link" href="gestorePagine?pagina=statisticheVideo">Statistiche Video</a>
   				</li>
 	</c:if>
-    
+  	<li class="nav-item">
+			    <a class="nav-link" href="gestorePagine?pagina=topTen">Top Ten</a>
+  	</li>  
   
     <li class="nav-item">
       <a class="nav-link" href="gestorePagine?pagina=info">Info</a>
+      
 	</li>
     </ul>
     <form class="form-inline my-2 my-lg-0" method="GET" action="risultatoRicerca">
     
-   <c:if test="${utente == null}">
-   			 <script language="javascript">
-       				 window.location.href = "gestorePagine?pagina=index"
-   			 </script>
-
-
-<a href="gestorePagine?pagina=index"></a>
-   			
-   			
-   </c:if>
+   
     <div class="alert my-2 my-sm-0" id="benvenuto">
 			<font color="white"><strong>${datiUtente}</strong></font>
 		</div>
