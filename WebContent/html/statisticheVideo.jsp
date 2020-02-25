@@ -182,7 +182,7 @@
         <!-- Morris Charts JavaScript -->
         <script src="../js/raphael.min.js"></script>
         <script src="../js/morris.min.js"></script>
-        <script src="../js/morris-data.js"></script>
+        <script src="../js/morris-data2.js"></script>
 
         <!-- Custom Theme JavaScript -->
         <script src="../js/startmin.js"></script>

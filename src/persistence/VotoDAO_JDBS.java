@@ -170,7 +170,10 @@ public class VotoDAO_JDBS implements VotoDAO {
 			throw new RuntimeException(e.getMessage());
 		} finally {
 			try {
-				connection.close();
+				if((connection !=null) && !connection.isClosed())
+			    {
+			      connection.close(); 
+			    }
 			} catch (SQLException e) {
 				throw new RuntimeException(e.getMessage());
 			}
