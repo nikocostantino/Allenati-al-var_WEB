@@ -153,6 +153,11 @@ public class EsitoDAO_JDBC implements EsitoDAO{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}	finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());}
 		}		
 	}
 	
@@ -225,6 +230,11 @@ public class EsitoDAO_JDBC implements EsitoDAO{
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}	finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());}
 		} 		
 	}
 

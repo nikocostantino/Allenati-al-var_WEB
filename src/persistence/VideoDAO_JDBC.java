@@ -152,13 +152,18 @@ public class VideoDAO_JDBC implements VideoDAO{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}	finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());}
 		}
 
 	}
 
 	public boolean esisteVideo(String urlNuovo) {
 		Connection connection = null;
-	
+		boolean b=false;
 		try {
 			connection = DBManager.getInstance().getConnection();
 			
@@ -168,19 +173,25 @@ public class VideoDAO_JDBC implements VideoDAO{
 
 			ResultSet result = statement.executeQuery();
 			if(result.next()) {
-				return true;
+				b= true;
 			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}	finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());}
 		}
 
-		return false;
+		return b;
 	}
 
 	public boolean esisteNome(String nomeNuovo) {
 		Connection connection = null;
+		boolean b=false;
 		
 		try {
 			connection = DBManager.getInstance().getConnection();
@@ -191,21 +202,26 @@ public class VideoDAO_JDBC implements VideoDAO{
 
 			ResultSet result = statement.executeQuery();
 			if(result.next()) {
-				System.out.println(result.getString("nome"));
-				return true;
+				b= true;
 			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}	finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());}
 		}
 
-		return false;
+		return b;
 	}
 
 	@Override
 	public boolean esisteNomeModifica(String modificaNome, String url) {
 		Connection connection = null;
+		boolean b=false;
 		
 		try {
 			connection = DBManager.getInstance().getConnection();
@@ -217,16 +233,20 @@ public class VideoDAO_JDBC implements VideoDAO{
 
 			ResultSet result = statement.executeQuery();
 			if(result.next()) {
-				System.out.println(result.getString("nome"));
-				return true;
+				b=true;
 			}
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}	finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());}
 		}
 
-		return false;
+		return b;
 	}
 	
 	@Override
@@ -342,26 +362,28 @@ public class VideoDAO_JDBC implements VideoDAO{
 				throw new RuntimeException(e.getMessage());
 			}
 		}
-		
-		String massimo = lista.get(0);
-		int max = 0;
-		for(int i=0; i<lista.size(); i++)
-		{
-			int cont=0;
-			for(int j=0; j<lista.size(); j++)
+		if(lista.size()!=0)
+		{	String massimo = lista.get(0);
+			int max = 0;
+			for(int i=0; i<lista.size(); i++)
 			{
-				if(lista.get(i) == lista.get(j))
+				int cont=0;
+				for(int j=0; j<lista.size(); j++)
 				{
-					cont++;
+					if(lista.get(i) == lista.get(j))
+					{
+						cont++;
+					}
+				}
+				if(cont>max)
+				{
+					max=cont;
+					massimo = lista.get(i);
 				}
 			}
-			if(cont>max)
-			{
-				max=cont;
-				massimo = lista.get(i);
-			}
+			return massimo;
 		}
-		return massimo;
+		return "nessuno";
 	}
 
 	@Override
@@ -388,7 +410,8 @@ public class VideoDAO_JDBC implements VideoDAO{
 				throw new RuntimeException(e.getMessage());
 			}
 		}
-		
+		if(lista.size()!=0)
+		{
 		String massimo = lista.get(0);
 		int max = 0;
 		for(int i=0; i<lista.size(); i++)
@@ -408,6 +431,8 @@ public class VideoDAO_JDBC implements VideoDAO{
 			}
 		}
 		return massimo;
+		}
+		return "nessuno";
 	}
 
 	@Override
@@ -437,8 +462,9 @@ public class VideoDAO_JDBC implements VideoDAO{
 				throw new RuntimeException(e.getMessage());
 			}
 		}
-		
-		return lista.get(0);
+		if(lista.size()>0)
+			return lista.get(0);
+		return "nessuno";
 	}
 
 	@Override
@@ -469,12 +495,16 @@ public class VideoDAO_JDBC implements VideoDAO{
 			}
 		}
 		
-		return lista.get(0);
+		if(lista.size()>0)
+			return lista.get(0);
+		return "nessuno";
 	}
 
 	@Override
 	public ArrayList<String> getVideoCategorie() {
 		Connection connection = null;
+		ArrayList<String> a=new ArrayList<String>();
+
 		try {
 			connection = DBManager.getInstance().getConnection();
 
@@ -482,11 +512,9 @@ public class VideoDAO_JDBC implements VideoDAO{
 
 			PreparedStatement statement = connection.prepareStatement(insert);
 			ResultSet result = statement.executeQuery();
-			ArrayList<String> a=new ArrayList<String>();
 			while(result.next()) {
 				a.add((String) result.getString("categoria"));
 			}
-			return a;
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
 		} finally {
@@ -496,11 +524,14 @@ public class VideoDAO_JDBC implements VideoDAO{
 				throw new RuntimeException(e.getMessage());
 			}
 		}
+		return a;
+
 	}
 
 	@Override
 	public ArrayList<String> getVideoDifficolta() {
 		Connection connection = null;
+		ArrayList<String> a=new ArrayList<String>();
 		try {
 			connection = DBManager.getInstance().getConnection();
 
@@ -508,11 +539,9 @@ public class VideoDAO_JDBC implements VideoDAO{
 
 			PreparedStatement statement = connection.prepareStatement(insert);
 			ResultSet result = statement.executeQuery();
-			ArrayList<String> a=new ArrayList<String>();
 			while(result.next()) {
 				a.add((String) result.getString("difficolta"));
 			}
-			return a;
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
 		} finally {
@@ -522,6 +551,8 @@ public class VideoDAO_JDBC implements VideoDAO{
 				throw new RuntimeException(e.getMessage());
 			}
 		}
+		return a;
+
 	}
 
 	

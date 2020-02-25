@@ -134,12 +134,13 @@ public class GestorePagine extends HttpServlet {
 				}
 				else
 				{
-					proveEffettuate = DBManager.getInstance().getProveEffettuate(DBManager.getInstance().getUtenteCorrente().getEmail());
-					proveSuperate = DBManager.getInstance().getProveSuperate(DBManager.getInstance().getUtenteCorrente().getEmail());
-					proveNonSuperate = DBManager.getInstance().getProveNonSuperate(DBManager.getInstance().getUtenteCorrente().getEmail());
-					media = DBManager.getInstance().getMedia(DBManager.getInstance().getUtenteCorrente().getEmail());
-					votoPiuFrequente = DBManager.getInstance().getVotoPiuFrequente(DBManager.getInstance().getUtenteCorrente().getEmail());
-					votoMenoFrequente = DBManager.getInstance().getVotoMenoFrequente(DBManager.getInstance().getUtenteCorrente().getEmail());
+					String eemail=DBManager.getInstance().getUtenteCorrente().getEmail();
+					proveEffettuate = DBManager.getInstance().getProveEffettuate(eemail);
+					proveSuperate = DBManager.getInstance().getProveSuperate(eemail);
+					proveNonSuperate = DBManager.getInstance().getProveNonSuperate(eemail);
+					media = DBManager.getInstance().getMedia(eemail);
+					votoPiuFrequente = DBManager.getInstance().getVotoPiuFrequente(eemail);
+					votoMenoFrequente = DBManager.getInstance().getVotoMenoFrequente(eemail);
 				}
 				req.getSession().setAttribute("proveEffettuate", proveEffettuate);
 				req.getSession().setAttribute("proveSuperate", proveSuperate);

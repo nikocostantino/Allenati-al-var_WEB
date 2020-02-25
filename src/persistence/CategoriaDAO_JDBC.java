@@ -157,7 +157,13 @@ public class CategoriaDAO_JDBC implements CategoriaDAO{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}			
+		}	finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());}
+		}
+					
 		
 	}
 
@@ -173,8 +179,12 @@ public class CategoriaDAO_JDBC implements CategoriaDAO{
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} 
-		
+		}	finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());}
+		}
 	}
 
 	@Override

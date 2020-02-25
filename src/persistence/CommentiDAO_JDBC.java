@@ -95,6 +95,11 @@ public class CommentiDAO_JDBC implements CommentiDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}	finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());}
 		}		
 	}
 
@@ -110,6 +115,11 @@ public class CommentiDAO_JDBC implements CommentiDAO {
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}	finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());}
 		} 		
 	}
 

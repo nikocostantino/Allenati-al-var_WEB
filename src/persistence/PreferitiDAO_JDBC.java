@@ -160,6 +160,11 @@ public class PreferitiDAO_JDBC implements PreferitiDAO{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}	finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());}
 		}				
 	}
 
@@ -175,6 +180,11 @@ public class PreferitiDAO_JDBC implements PreferitiDAO{
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}	finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());}
 		} 		
 	}
 

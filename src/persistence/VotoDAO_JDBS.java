@@ -39,6 +39,8 @@ public class VotoDAO_JDBS implements VotoDAO {
 	@Override
 	public ArrayList<Integer> getVoti(String email) {
 		Connection connection = null;
+		ArrayList<Integer> a=new ArrayList<Integer>();
+
 		try {
 			connection = DBManager.getInstance().getConnection();
 
@@ -48,11 +50,9 @@ public class VotoDAO_JDBS implements VotoDAO {
 			statement.setString(1, email);
 
 			ResultSet result = statement.executeQuery();
-			ArrayList<Integer> a=new ArrayList<Integer>();
 			while(result.next()) {
 				a.add((int) result.getLong("voto"));
 			}
-			return a;
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
 		} finally {
@@ -62,13 +62,19 @@ public class VotoDAO_JDBS implements VotoDAO {
 				throw new RuntimeException(e.getMessage());
 			}
 		}
+		return a;
+
 	}
 
 	@Override
 	public ArrayList<Integer> getUltimiDieci(String email) {
 		Connection connection = null;
+		System.out.println(email);
+		ArrayList<Integer> a=new ArrayList<Integer>();
+
 		try {
 			connection = DBManager.getInstance().getConnection();
+			System.out.println("connetto");
 
 			String insert = "select voto from voti where email=?";
 
@@ -76,27 +82,28 @@ public class VotoDAO_JDBS implements VotoDAO {
 			statement.setString(1, email);
 
 			ResultSet result = statement.executeQuery();
-			ArrayList<Integer> a=new ArrayList<Integer>();
 			while(result.next()) {
 				a.add((int) result.getLong("voto"));
 			}
-			if(a.size()<=10)
-				return a;
-			else
-			{
-				ArrayList<Integer> a2=new ArrayList<Integer>();
-				for(int i=a.size()-10; i<a.size(); i++)
-					a2.add(a.get(i));
-				return a2;
-			}
+			
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
 		} finally {
 			try {
+				System.out.println("chiuso");
 				connection.close();
 			} catch (SQLException e) {
 				throw new RuntimeException(e.getMessage());
 			}
+		}
+		if(a.size()<=10)
+			return a;
+		else
+		{
+			ArrayList<Integer> a2=new ArrayList<Integer>();
+			for(int i=a.size()-10; i<a.size(); i++)
+				a2.add(a.get(i));
+			return a2;
 		}
 	}
 
@@ -112,6 +119,11 @@ public class VotoDAO_JDBS implements VotoDAO {
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}	finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());}
 		} 		
 	}
 
@@ -142,6 +154,8 @@ public class VotoDAO_JDBS implements VotoDAO {
 	@Override
 	public ArrayList<Boolean> getVoti() {
 		Connection connection = null;
+		ArrayList<Boolean> a=new ArrayList<Boolean>();
+
 		try {
 			connection = DBManager.getInstance().getConnection();
 
@@ -149,11 +163,9 @@ public class VotoDAO_JDBS implements VotoDAO {
 
 			PreparedStatement statement = connection.prepareStatement(insert);
 			ResultSet result = statement.executeQuery();
-			ArrayList<Boolean> a=new ArrayList<Boolean>();
 			while(result.next()) {
 				a.add((boolean) result.getBoolean("risposta_utente"));
 			}
-			return a;
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
 		} finally {
@@ -163,6 +175,8 @@ public class VotoDAO_JDBS implements VotoDAO {
 				throw new RuntimeException(e.getMessage());
 			}
 		}
+		return a;
+
 	}
 
 }

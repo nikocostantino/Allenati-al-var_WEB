@@ -65,7 +65,7 @@ public class GestoreStatistiche extends HttpServlet{
 			}
 			
 			
-			
+			System.out.println("lista voti e "+listaVoti);
 			
 			ArrayList<Integer> votiOrdinati=new ArrayList<Integer>();
 			for(int i=0; i<11; i++)
@@ -74,7 +74,8 @@ public class GestoreStatistiche extends HttpServlet{
 			}
 			for(int i=0; i<listaVoti.size(); i++)
 			{
-				votiOrdinati.set(listaVoti.get(i), votiOrdinati.get(listaVoti.get(i))+1);
+				if(listaVoti.get(i)>=0)
+					votiOrdinati.set(listaVoti.get(i), votiOrdinati.get(listaVoti.get(i))+1);
 			}
 			String totale="";
 			for(int i=0; i<11; i++)
@@ -86,6 +87,8 @@ public class GestoreStatistiche extends HttpServlet{
 		}
 		if(votiTotali!=null)
 		{
+			
+			System.out.println("sto facendo get voti");
 			
 			ArrayList<Boolean> listaVoti = DBManager.getInstance().dammiVoti();
 			int verde = 0;
@@ -101,7 +104,9 @@ public class GestoreStatistiche extends HttpServlet{
 				else
 					rosso++;
 			}
-			verde = (verde*100)/listaVoti.size();
+			if(verde*100!=0)
+				verde = (verde*100)/listaVoti.size();
+			else verde=0;
 			rosso = 100-verde;
 			totale = totale + verde + " " + rosso + " ";
 			resp.getOutputStream().println(totale);

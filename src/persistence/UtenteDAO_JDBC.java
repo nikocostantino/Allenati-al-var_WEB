@@ -42,7 +42,7 @@ public class UtenteDAO_JDBC implements UtenteDAO{
 	@Override
 	public Utente findByPrimaryKey(String email, String password) {
 		Connection connection = null;
-		Utente utente = null;
+		Utente utente = new Utente();
 		try {
 			connection = DBManager.getInstance().getConnection();
 			PreparedStatement statement;
@@ -52,7 +52,6 @@ public class UtenteDAO_JDBC implements UtenteDAO{
 			statement.setString(2, password);
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
-				utente = new Utente();
 				utente.setNome(result.getString("nome"));
 				utente.setCognome(result.getString("cognome"));
 				utente.setEmail(result.getString("email"));
@@ -95,12 +94,18 @@ public class UtenteDAO_JDBC implements UtenteDAO{
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}	finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());}
 		} 
 	}
 	
 	@Override
 	public boolean cercaPerEmail(String email) {
 		Connection connection = null;
+		boolean b=false;
 		try {
 			connection = DBManager.getInstance().getConnection();
 			PreparedStatement statement;
@@ -109,7 +114,7 @@ public class UtenteDAO_JDBC implements UtenteDAO{
 			statement.setString(1, email);
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
-				return true;
+				b= true;
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e.getMessage());
@@ -120,7 +125,7 @@ public class UtenteDAO_JDBC implements UtenteDAO{
 				throw new RuntimeException(e.getMessage());
 			}
 		}	
-		return false;
+		return b;
 	}
 
 	@Override
@@ -295,6 +300,11 @@ public class UtenteDAO_JDBC implements UtenteDAO{
 			statement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}	finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());}
 		} 
 	}
 
@@ -627,7 +637,9 @@ public class UtenteDAO_JDBC implements UtenteDAO{
 				throw new RuntimeException(e.getMessage());
 			}
 		}
-		double media= somma/cont;
+		double media=0;
+		if(somma!=0 && cont!=0)
+			media= somma/cont;
 		double temp = Math.pow(10,2);
 		return Math.rint(media * temp) / temp;
 	}
