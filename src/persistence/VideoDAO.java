@@ -1,6 +1,7 @@
 package persistence;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javafx.util.Pair;
 import model.Video;
@@ -24,5 +25,7 @@ public interface VideoDAO {
 	public String getNomeVideoSbagliato(String linkVideoSbagliato);
 	public ArrayList<String> getVideoCategorie();
 	public ArrayList<String> getVideoDifficolta();
+	public Video getVideo(String url);
+	public ArrayList<Video> getVideoHome();
 
 }

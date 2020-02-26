@@ -87,9 +87,7 @@ public class GestoreStatistiche extends HttpServlet{
 		}
 		if(votiTotali!=null)
 		{
-			
-			System.out.println("sto facendo get voti");
-			
+					
 			ArrayList<Boolean> listaVoti = DBManager.getInstance().dammiVoti();
 			int verde = 0;
 			int rosso = 0;

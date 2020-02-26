@@ -33,77 +33,6 @@
 
 
 
-<div id="jumbo1" class="jumbotron">
-
-		
-
-
-
-	<h1><span class="badge badge-light">PIU' VISTI</span></h1>
-	
-	<!--Carousel Wrapper-->
-	<div id="video-carousel-piu_visti" class="carousel slide carousel-fade" data-ride="carousel">
-	  
-	  <!--Indicators-->
-	  <ol class="carousel-indicators">
-	    <li data-target="#video-carousel-piu_visti" data-slide-to="0" class="active"></li>
-	    <li data-target="#video-carousel-piu_visti" data-slide-to="1"></li>
-	    <li data-target="#video-carousel-piu_visti" data-slide-to="2"></li>
-	  </ol>
-	  <!--/.Indicators-->
-	  
-	  <!--Slides-->
-	  <div class="carousel-inner" role="listbox" id="columnCenter">
-	    
-	    <c:set var = "first" scope = "session" value = "${true}"/>
-	    <c:set var = "cont" scope = "request" value ="${0}" />
-	    <c:forEach items="${video_piu_visti}" var="v">
-       	
-	    	<c:if test="${first == true && cont % 5 == 0}">
-	        	<div class="carousel-item active">
-	       	</c:if>
-			<c:if test="${first == false && cont % 5 == 0 }">
-				<div class="carousel-item">
-			</c:if>
-			<div class="inline" align="center">
-				<div class=rowUp>
-					
-						<iframe id="single_video" src="${v.url}" class="video-fluid"></iframe>
-					
-				</div>
-				<div class="rowDown">
-				 <a class="badge badge-secondary"  id="textNomeVideo" href="pagina_video?url=${v.url}">${v.nome}</a> 
-				</div>
-			</div>
-			<c:set var = "cont" scope = "request" value ="${cont + 1}" />
-			<c:set var = "first" scope = "session" value = "${false}"/>
-			<c:if test="${cont % 5 == 0}">	
-				</div>
-			</c:if>
-		</c:forEach>
-		<c:if test="${cont % 5 != 0}">
-			</div>
-		</c:if>
-	  </div>
-	  <!--/.Slides-->
-	  
-	  <!--Controls-->
-	  
-	  <a id="freccia" class="carousel-control-prev" href="#video-carousel-piu_visti" role="button" data-slide="prev">
-	    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-	    <span class="sr-only">Previous</span>
-	  </a>
-	 
-	  <a id="freccia" class="carousel-control-next" href="#video-carousel-piu_visti" role="button" data-slide="next">
-	    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-	    <span class="sr-only">Next</span>
-	  </a>
-	 
-	  <!--/.Controls-->
-	</div>
-	</div> 
-	<!--Carousel Wrapper-->
-</div>
 
 <div id="jumbo2" class="jumbotron">
 	<h1><span class="badge badge-light">RECENTI</span></h1>
@@ -171,16 +100,17 @@
 	<!--Carousel Wrapper-->
 </div>	
 
+
 <div id="jumbo3"  class="jumbotron">
-	<h1><span class="badge badge-light">TUTTI</span></h1>
+	<h1><span class="badge badge-light">VIDEO DIFFICILI</span></h1>
 	
 	<!--Carousel Wrapper-->
-	<div id="video-carousel-tutti" class="carousel slide carousel-fade" data-ride="carousel">
+	<div id="video-carousel-difficili" class="carousel slide carousel-fade" data-ride="carousel">
 	  <!--Indicators-->
 	  <ol class="carousel-indicators">
-	    <li data-target="#video-carousel-tutti" data-slide-to="0" class="active"></li>
-	    <li data-target="#video-carousel-tutti" data-slide-to="1"></li>
-	    <li data-target="#video-carousel-tutti" data-slide-to="2"></li>
+	    <li data-target="#video-carousel-difficili" data-slide-to="0" class="active"></li>
+	    <li data-target="#video-carousel-difficili" data-slide-to="1"></li>
+	    <li data-target="#video-carousel-difficili" data-slide-to="2"></li>
 	  </ol>
 	  <!--/.Indicators-->
 	  
@@ -189,7 +119,7 @@
 	    
 	    <c:set var = "first" scope = "session" value = "${true}"/>
 	    <c:set var = "cont" scope = "request" value ="${0}" />
-	    <c:forEach items="${video}" var="v">
+	    <c:forEach items="${difficili}" var="v">
        	
 	    	<c:if test="${first == true && cont % 5 == 0}">
 	        	<div class="carousel-item active">
@@ -220,12 +150,140 @@
 	  
 	  <!--Controls-->
 	  
-	  <a id="freccia" class="carousel-control-prev" href="#video-carousel-tutti" role="button" data-slide="prev">
+	  <a id="freccia" class="carousel-control-prev" href="#video-carousel-difficili" role="button" data-slide="prev">
 	    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 	    <span class="sr-only">Previous</span>
 	  </a>
 	 
-	  <a id="freccia" class="carousel-control-next" href="#video-carousel-tutti" role="button" data-slide="next">
+	  <a id="freccia" class="carousel-control-next" href="#video-carousel-difficili" role="button" data-slide="next">
+	    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+	    <span class="sr-only">Next</span>
+	  </a>
+	 
+	  <!--/.Controls-->
+	</div>
+	</div> 
+	<!--Carousel Wrapper-->
+</div>
+<div id="jumbo3"  class="jumbotron">
+	<h1><span class="badge badge-light">VIDEO NORMALI</span></h1>
+	
+	<!--Carousel Wrapper-->
+	<div id="video-carousel-normali" class="carousel slide carousel-fade" data-ride="carousel">
+	  <!--Indicators-->
+	  <ol class="carousel-indicators">
+	    <li data-target="#video-carousel-normali" data-slide-to="0" class="active"></li>
+	    <li data-target="#video-carousel-normali" data-slide-to="1"></li>
+	    <li data-target="#video-carousel-normali" data-slide-to="2"></li>
+	  </ol>
+	  <!--/.Indicators-->
+	  
+	  <!--Slides-->
+	  <div class="carousel-inner" role="listbox" id="columnCenter">
+	    
+	    <c:set var = "first" scope = "session" value = "${true}"/>
+	    <c:set var = "cont" scope = "request" value ="${0}" />
+	    <c:forEach items="${normali}" var="v">
+       	
+	    	<c:if test="${first == true && cont % 5 == 0}">
+	        	<div class="carousel-item active">
+	       	</c:if>
+			<c:if test="${first == false && cont % 5 == 0 }">
+				<div class="carousel-item">
+			</c:if>
+			<div class="inline" align="center">
+				<div class=rowUp>	
+					<iframe id="single_video" src="${v.url}" class="video-fluid"></iframe>
+				</div>
+				<div class="rowDown">
+				 	<a class="badge badge-secondary"  id="textNomeVideo" href="pagina_video?url=${v.url}">${v.nome}</a> 
+				</div>
+			</div>
+			<c:set var = "cont" scope = "request" value ="${cont + 1}" />
+			<c:set var = "first" scope = "session" value = "${false}"/>
+			<c:if test="${cont % 5 == 0}">	
+				</div>
+			</c:if>
+		</c:forEach>
+		<c:if test="${cont % 5 != 0}">
+			</div>
+		</c:if>
+	  </div>
+	  
+	  <!--/.Slides-->
+	  
+	  <!--Controls-->
+	  
+	  <a id="freccia" class="carousel-control-prev" href="#video-carousel-normali" role="button" data-slide="prev">
+	    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	    <span class="sr-only">Previous</span>
+	  </a>
+	 
+	  <a id="freccia" class="carousel-control-next" href="#video-carousel-normali" role="button" data-slide="next">
+	    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+	    <span class="sr-only">Next</span>
+	  </a>
+	 
+	  <!--/.Controls-->
+	</div>
+	</div> 
+	<!--Carousel Wrapper-->
+</div>
+<div id="jumbo3"  class="jumbotron">
+	<h1><span class="badge badge-light">VIDEO FACILI</span></h1>
+	
+	<!--Carousel Wrapper-->
+	<div id="video-carousel-facili" class="carousel slide carousel-fade" data-ride="carousel">
+	  <!--Indicators-->
+	  <ol class="carousel-indicators">
+	    <li data-target="#video-carousel-facili" data-slide-to="0" class="active"></li>
+	    <li data-target="#video-carousel-facili" data-slide-to="1"></li>
+	    <li data-target="#video-carousel-facili" data-slide-to="2"></li>
+	  </ol>
+	  <!--/.Indicators-->
+	  
+	  <!--Slides-->
+	  <div class="carousel-inner" role="listbox" id="columnCenter">
+	    
+	    <c:set var = "first" scope = "session" value = "${true}"/>
+	    <c:set var = "cont" scope = "request" value ="${0}" />
+	    <c:forEach items="${facili}" var="v">
+       	
+	    	<c:if test="${first == true && cont % 5 == 0}">
+	        	<div class="carousel-item active">
+	       	</c:if>
+			<c:if test="${first == false && cont % 5 == 0 }">
+				<div class="carousel-item">
+			</c:if>
+			<div class="inline" align="center">
+				<div class=rowUp>	
+					<iframe id="single_video" src="${v.url}" class="video-fluid"></iframe>
+				</div>
+				<div class="rowDown">
+				 	<a class="badge badge-secondary"  id="textNomeVideo" href="pagina_video?url=${v.url}">${v.nome}</a> 
+				</div>
+			</div>
+			<c:set var = "cont" scope = "request" value ="${cont + 1}" />
+			<c:set var = "first" scope = "session" value = "${false}"/>
+			<c:if test="${cont % 5 == 0}">	
+				</div>
+			</c:if>
+		</c:forEach>
+		<c:if test="${cont % 5 != 0}">
+			</div>
+		</c:if>
+	  </div>
+	  
+	  <!--/.Slides-->
+	  
+	  <!--Controls-->
+	  
+	  <a id="freccia" class="carousel-control-prev" href="#video-carousel-facili" role="button" data-slide="prev">
+	    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	    <span class="sr-only">Previous</span>
+	  </a>
+	 
+	  <a id="freccia" class="carousel-control-next" href="#video-carousel-facili" role="button" data-slide="next">
 	    <span class="carousel-control-next-icon" aria-hidden="true"></span>
 	    <span class="sr-only">Next</span>
 	  </a>

@@ -37,20 +37,8 @@ public class MostraVideo extends HttpServlet{
 		
 		if(url!=null) {
 			req.getSession().setAttribute("url", req.getParameter("url"));
-			for (Video video : DBManager.getInstance().getVideo()) {
-				if(video.getUrl().equals(req.getParameter("url"))){
-					req.getSession().setAttribute("id", video.getId());
-					
-				}
-				
-			}
-			ArrayList<Video> video = DBManager.getInstance().getVideo();
-			
-			for(Video v : video) {
-				if(v.getUrl().equals(url))
-					videoChiesto = v;			
-			}
-			
+			videoChiesto= DBManager.getInstance().getVideo(url);
+			req.getSession().setAttribute("id",  videoChiesto.getId());
 			DBManager.getInstance().getUtenteCorrente().aggiornaRecenti(videoChiesto);
 			
 			//videoChiesto.setVisualizzazioni(videoChiesto.getVisualizzazioni()+1); 

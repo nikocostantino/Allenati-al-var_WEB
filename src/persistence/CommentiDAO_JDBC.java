@@ -66,6 +66,7 @@ public class CommentiDAO_JDBC implements CommentiDAO {
 		return commenti;
 	}
 
+
 	@Override
 	public ArrayList<Commenti> findAll() {
 		// TODO Auto-generated method stub

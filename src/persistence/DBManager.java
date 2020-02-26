@@ -139,13 +139,12 @@ public class DBManager {
 		getVideoDAO().delete(url);
 	}
 
-	public ArrayList<Video> getPiuVisti() {
-		
+	public ArrayList<Video> getPiuVisti(ArrayList<Video> video_nel_db) {
+			
 		try {
 			
 			int totaleVisualizzazioni = 0;
 			piu_visti.clear();
-			ArrayList<Video> video_nel_db = getVideo();
 			
 			for (Video video : video_nel_db) {
 				totaleVisualizzazioni+= video.getVisualizzazioni();
@@ -471,6 +470,14 @@ public class DBManager {
 
 	public void setNullUtenteCorrente() {
 			utenteCorrente=null;
+	}
+
+	public Video getVideo(String url) {
+		return getVideoDAO().getVideo(url);
+	}
+
+	public ArrayList<Video> getVideoHome() {
+		return getVideoDAO().getVideoHome();
 	}
 	
 

@@ -558,6 +558,79 @@ public class VideoDAO_JDBC implements VideoDAO{
 
 	}
 
+
+
+	@Override
+	public Video getVideo(String url) {
+		Connection connection = null;
+		Video video = new Video();
+		try {
+			connection = DBManager.getInstance().getConnection();
+			PreparedStatement statement;
+			
+			statement = connection.prepareStatement("select * from video where url=?");
+			statement.setString(1, url);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				video.setId(result.getString("id"));				
+				video.setUrl(result.getString("url"));
+				video.setNome(result.getString("nome"));
+				video.setDescrizione(result.getString("descrizione"));
+				video.setDifficolta(result.getString("difficolta"));
+				video.setVisualizzazioni(result.getInt("visualizzazioni"));
+				
+				video.setRisposte(new OpzioniRisposte(result.getString("rispostaCorretta"), result.getString("rispostaErrata"), null));
+				
+				video.setCategoria(new Categoria(result.getString("categoria")));
+				
+				video.setCommenti(DBManager.getInstance().getCommentiDAO().findByPrimaryKey(result.getString("url")));
+				
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		}	 finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		return video;
+	}
+
+
+	@Override
+	public ArrayList<Video> getVideoHome() {
+		Connection connection = null;
+		ArrayList<Video> lista_video = new ArrayList<Video>();
+		try {
+			connection = DBManager.getInstance().getConnection();
+			Video video = null;
+			PreparedStatement statement;
+			
+			statement = connection.prepareStatement(query_findAll);
+			ResultSet result = statement.executeQuery();
+			while (result.next()) {
+				video = new Video();
+				video.setId(result.getString("id"));				
+				video.setUrl(result.getString("url"));
+				video.setNome(result.getString("nome"));
+				video.setDifficolta(result.getString("difficolta"));
+				
+				lista_video.add(video);
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e.getMessage());
+		}	 finally {
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e.getMessage());
+			}
+		}
+		return lista_video;
+	}
+
 	
 
 

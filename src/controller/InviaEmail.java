@@ -27,7 +27,7 @@ public class InviaEmail {
 	public void inviaMail(String destinatario) {
 
         final String username = "allenati-al-var@libero.it";
-        final String password = "allenatironaldo";
+        final String password = "Allenatironaldo7";
 
         Properties prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.libero.it");
@@ -68,7 +68,7 @@ public class InviaEmail {
 	public void inviaMailNuovaPassword(String destinatario) {
 
         final String username = "allenati-al-var@libero.it";
-        final String password = "allenatironaldo";
+        final String password = "Allenatironaldo7";
 
         Properties prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.libero.it");
@@ -109,7 +109,7 @@ public class InviaEmail {
 	public void inviaMailApprovazioneAmministratore(String destinatario, String risposta) {
 
         final String username = "allenati-al-var@libero.it";
-        final String password = "allenatironaldo";
+        final String password = "Allenatironaldo7";
 
         Properties prop = new Properties();
 		prop.put("mail.smtp.host", "smtp.libero.it");

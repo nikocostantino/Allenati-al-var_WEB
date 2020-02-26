@@ -32,10 +32,10 @@ public class CategoriaDAO_JDBC implements CategoriaDAO{
 				video.setNome(result.getString(7)); // come passare la stringa e farsi capire
 				video.setDescrizione(result.getString("descrizione"));
 				video.setDifficolta(result.getString("difficolta"));
-				video.setVisualizzazioni(result.getInt("visualizzazioni"));
-				video.setRisposte(new OpzioniRisposte(result.getString("rispostaCorretta"), result.getString("rispostaErrata"), null));
-				video.setCategoria(new Categoria(result.getString("categoria")));
-				video.setCommenti(DBManager.getInstance().getCommentiDAO().findByPrimaryKey(result.getString("url")));
+				//video.setVisualizzazioni(result.getInt("visualizzazioni"));
+				//video.setRisposte(new OpzioniRisposte(result.getString("rispostaCorretta"), result.getString("rispostaErrata"), null));
+				//video.setCategoria(new Categoria(result.getString("categoria")));
+				//video.setCommenti(DBManager.getInstance().getCommentiDAO().findByPrimaryKey(result.getString("url")));
 				
 				lista_video.add(video);
 			}
