@@ -40,8 +40,8 @@ public class DBManager {
 	}
 	
 	public Connection getConnection() throws SQLException {
-	//	Connection connection = DriverManager.getConnection("jdbc:postgresql://dumbo.db.elephantsql.com:5432/pomdxlpa", "pomdxlpa", "CT9m2BEOOTt2prmx3AVWLQh-vrqVr1ba");
-		Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AllenatiALVAR_WEB", "postgres", "7Ronaldo");
+		Connection connection = DriverManager.getConnection("jdbc:postgresql://dumbo.db.elephantsql.com:5432/pomdxlpa", "pomdxlpa", "CT9m2BEOOTt2prmx3AVWLQh-vrqVr1ba");
+	//	Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AllenatiALVAR_WEB", "postgres", "7Ronaldo");
 		
 		return connection;
 	}
