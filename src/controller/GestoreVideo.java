@@ -44,6 +44,7 @@ public class GestoreVideo extends HttpServlet {
 		{	
 			String link = req.getParameter("link");
 			String nome = req.getParameter("nome");
+			nome=new String(nome.getBytes(), "UTF-8");
 			String descrizione = req.getParameter("desc");
 			String difficolta = req.getParameter("diff");
 			String categoria = req.getParameter("cat");
@@ -65,7 +66,6 @@ public class GestoreVideo extends HttpServlet {
 		}
 		else if(urlNuovo!=null)
 		{
-			System.out.println(urlNuovo);
 			if(urlNuovo.matches("https://www.youtube.com/embed/(.*)") == false)
 			{
 				

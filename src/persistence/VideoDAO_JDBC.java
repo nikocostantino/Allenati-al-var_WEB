@@ -1,5 +1,6 @@
 package persistence;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -82,7 +83,14 @@ public class VideoDAO_JDBC implements VideoDAO{
 			PreparedStatement statement = connection.prepareStatement(insert);
 			statement.setString(1, video.getId());
 			statement.setString(2, video.getUrl());
-			statement.setString(3, video.getNome());
+			String nome;
+			try {
+				nome = new String(video.getNome().getBytes(), "UTF-8");
+				statement.setString(3, nome);
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			statement.setString(4, video.getDescrizione());
 			statement.setString(5, video.getDifficolta());
 			statement.setInt(6, 0);

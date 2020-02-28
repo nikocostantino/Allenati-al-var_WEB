@@ -42,7 +42,7 @@ public class UtenteDAO_JDBC implements UtenteDAO{
 	@Override
 	public Utente findByPrimaryKey(String email, String password) {
 		Connection connection = null;
-		Utente utente = new Utente();
+		Utente utente=null;
 		try {
 			connection = DBManager.getInstance().getConnection();
 			PreparedStatement statement;
@@ -52,6 +52,7 @@ public class UtenteDAO_JDBC implements UtenteDAO{
 			statement.setString(2, password);
 			ResultSet result = statement.executeQuery();
 			if (result.next()) {
+				utente = new Utente();
 				utente.setNome(result.getString("nome"));
 				utente.setCognome(result.getString("cognome"));
 				utente.setEmail(result.getString("email"));

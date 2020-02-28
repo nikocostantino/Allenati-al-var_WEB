@@ -40,8 +40,9 @@ public class DBManager {
 	}
 	
 	public Connection getConnection() throws SQLException {
-		Connection connection = DriverManager.getConnection("jdbc:postgresql://dumbo.db.elephantsql.com:5432/pomdxlpa", "pomdxlpa", "CT9m2BEOOTt2prmx3AVWLQh-vrqVr1ba");
-
+	//	Connection connection = DriverManager.getConnection("jdbc:postgresql://dumbo.db.elephantsql.com:5432/pomdxlpa", "pomdxlpa", "CT9m2BEOOTt2prmx3AVWLQh-vrqVr1ba");
+		Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/AllenatiALVAR_WEB", "postgres", "7Ronaldo");
+		
 		return connection;
 	}
 	
@@ -227,7 +228,13 @@ public class DBManager {
 
 
 	public void modificaVideo(Video v) {
-		getVideoDAO().update(v);
+		try {
+			v.setNome(new String(v.getNome().getBytes(), "UTF-8"));
+			getVideoDAO().update(v);
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public boolean esisteEmail(String email) {

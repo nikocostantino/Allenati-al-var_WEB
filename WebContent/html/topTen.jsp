@@ -109,17 +109,17 @@
 						    <c:if test="${size > 8}">
 							<tr <c:if test="${utenteCorrente == topTen[8].email}"> class="table-primary"</c:if>>
 						      <th scope="row">9</th>
-						      <td>Alessandro</td>
-						      <td>Rossi</td>
-						      <td>alessandro.rossi</td>
+						      <td>${topTen[8].nome}</td>
+						      <td>${topTen[8].cognome}</td>
+						      <td>${topTen[8].media}</td>
 						    </tr>
 						    </c:if>
 						    <c:if test="${size > 9}">
 							<tr <c:if test="${utenteCorrente == topTen[9].email}"> class="table-primary"</c:if>>
 						      <th scope="row">10</th>
-						      <td>Alessandro</td>
-						      <td>Rossi</td>
-						      <td>alessandro.rossi</td>
+						      <td>${topTen[9].nome}</td>
+						      <td>${topTen[9].cognome}</td>
+						      <td>${topTen[9].media}</td>
 						    </tr>
 						    </c:if>
 						  </tbody>

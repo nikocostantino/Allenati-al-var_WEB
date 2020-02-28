@@ -4,8 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
@@ -15,7 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.catalina.startup.AddPortOffsetRule;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -42,7 +39,7 @@ public class MostraVideo extends HttpServlet{
 			DBManager.getInstance().getUtenteCorrente().aggiornaRecenti(videoChiesto);
 			
 			//videoChiesto.setVisualizzazioni(videoChiesto.getVisualizzazioni()+1); 
-			req.getSession().setAttribute("nome", videoChiesto.getNome());
+			req.getSession().setAttribute("nome", new String(videoChiesto.getNome().getBytes(), "UTF-8"));
 			req.getSession().setAttribute("descrizione", videoChiesto.getDescrizione());
 			req.getSession().setAttribute("categoria", videoChiesto.getCategoria().get(0).getNome()); //da correggere
 			req.getSession().setAttribute("difficolta", videoChiesto.getDifficolta());
@@ -104,7 +101,6 @@ public class MostraVideo extends HttpServlet{
 			}else if(json.getString("azione").equals("commento")) {
 				
 				JSONObject jsonCompleto = new JSONObject();
-				String testo = new String(json.getString("testo").getBytes(), "UTF-8");
 				jsonCompleto.append("testo", json.getString("testo"));
 				jsonCompleto.append("url", json.get("url_video"));
 				jsonCompleto.append("nome", DBManager.getInstance().getUtenteCorrente().getNome());
